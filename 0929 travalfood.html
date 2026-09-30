@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opendata 地方美食練習</title>
+    <link rel="stylesheet" href="myallcss.css">
+    <style>
+        /* * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 1024px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 2px 2px 1px 1px rgb(249, 3, 3);
+            padding: 15px;
+            overflow: hidden;
+        }
+
+        .demo {
+            width: 32%;
+            box-shadow: 2px 2px 1px 1px rgba(219, 97, 92, 0.652);
+            margin-top: 15px;
+            margin-right: 1%;
+            float: left; */
+        /* }
+
+        .demo .logo {
+            background-image: url(images/photo-1574623452334-1e0ac2b3ccb4.avif);
+            width: 100%;
+            height: 220px;
+        } */
+
+        /* @media screen and (max-width:1000px) {
+            .wrapper {
+                width: 100%;
+                margin-top: 15px;
+                margin-bottom: 15px;
+                margin-left: auto;
+                margin-right: auto;
+                box-shadow: 2px 2px 1px 1px rgb(196, 209, 12);
+                padding: 15px;
+
+            }
+
+            .demo {
+                width: 100%;
+                box-shadow: 2px 2px 1px 1px rgb(127, 101, 220);
+                margin-top: 15px;
+                margin-right: 0;
+                float: none;
+            }
+
+
+
+
+        } */
+        
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: linear-gradient(to bottom, #87CEEB 0%, #dff6ff 45%, #ffffff 100%);
+        min-height: 100vh;
+        font-family: "Microsoft JhengHei", sans-serif;
+    }
+
+    .mytitle04 {
+        color: #24577a;
+    }
+
+    .display-1 {
+        text-align: center;
+        font-size: 42px;
+        font-weight: bold;
+        color: #ffffff;
+        text-shadow: 2px 3px 4px rgba(45, 93, 120, 0.35);
+        margin-top: 25px;
+        margin-bottom: 10px;
+    }
+
+    .wrapper {
+        width: 1024px;
+        margin-top: 15px;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+
+        background-color: rgba(255, 255, 255, 0.92);
+
+        border-radius: 25px;
+
+        box-shadow:
+            0 8px 20px rgba(70, 130, 160, 0.25),
+            0 2px 5px rgba(70, 130, 160, 0.15);
+
+        padding: 20px;
+
+        overflow: hidden;
+
+        border: 3px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .demo {
+        width: 32%;
+        background-color: #ffffff;
+
+        border-radius: 18px;
+
+        box-shadow:
+            0 5px 12px rgba(64, 130, 160, 0.2);
+
+        margin-top: 15px;
+        margin-right: 1%;
+
+        float: left;
+
+        overflow: hidden;
+
+        border: 1px solid #d8eef7;
+
+        transition: all 0.3s ease;
+    }
+
+    .demo:hover {
+        transform: translateY(-5px);
+
+        box-shadow:
+            0 10px 20px rgba(45, 130, 170, 0.3);
+    }
+
+    .demo .logo {
+        background-image: url(images/photo-1574623452334-1e0ac2b3ccb4.avif);
+
+        width: 100%;
+        height: 220px;
+
+        background-size: cover;
+        background-position: center;
+
+        position: relative;
+    }
+
+    .demo .logo::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        height: 60px;
+
+        background: linear-gradient(
+            transparent,
+            rgba(0, 80, 130, 0.25)
+        );
+    }
+
+    .demo p {
+        padding: 8px 15px;
+        background-color: #ffffff;
+    }
+
+    .demo p:first-of-type {
+        padding-top: 15px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #176b9d;
+    }
+
+    .demo p:last-of-type {
+        padding-bottom: 15px;
+        color: #52788c;
+        font-size: 16px;
+    }
+
+    @media screen and (max-width:1000px) {
+
+        body {
+            background: linear-gradient(
+                to bottom,
+                #8ed8f8 0%,
+                #e7f8ff 50%,
+                #ffffff 100%
+            );
+        }
+
+        .display-1 {
+            font-size: 32px;
+            margin-top: 20px;
+        }
+
+        .wrapper {
+            width: 100%;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
+
+            background-color: rgba(255, 255, 255, 0.95);
+
+            box-shadow:
+                0 5px 15px rgba(70, 130, 160, 0.2);
+
+            padding: 15px;
+
+            border-radius: 20px;
+        }
+
+        .demo {
+            width: 100%;
+
+            background-color: #ffffff;
+
+            box-shadow:
+                0 5px 12px rgba(64, 130, 160, 0.2);
+
+            margin-top: 15px;
+            margin-right: 0;
+
+            float: none;
+
+            border-radius: 18px;
+        }
+
+        .demo .logo {
+            height: 220px;
+        }
+    }
+
+    </style>
+
+
+
+</head>
+
+<body>
+    <div class="display-1 fw-300 mytitle04">地方美食餐廳列表</div>
+    <div class="wrapper" id="foodlist">
+        <div class="demo">
+            <!-- <div class="logo bg-img" style="background-image: url(images/photo-1580149959316-75e2487cfb06.avif);"></div>
+            <div class="logo bg-img"></div> -->
+            <!-- <p class="mytitle04">店家:xxx</p>
+            <p class="mytitle04">電話:xxxx</p> -->
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="js/jquery-4.0.0.js"></script>
+    <script src="js/TravelFood.js"></script>
+    <script>
+        // food.forEach(function (item, index) {
+        //     // console.log(item.Name);
+        //     // console.log(item.Address);
+        //     // console.log(item.Email);
+
+        // })
+
+        food.forEach(function (item) {
+            $("#foodlist").append('<div class="demo"><div class="logo bg-img" style="background-image: url(' + item.PicURL + ');"></div><p class="mytitle04" >店家:' + item.Name + '</p><p class="mytitle04" >電話:' + item.Tel + '</p></div>')
+        });
+
+        // food.forEach(function (item) {
+        //     $("#foodlist").append(`
+        //     <div class="demo">
+        //         <div class="logo bg-img" style="background-image: url(${item.PicURL});"></div>
+        //         <p class="mytitle04">店家:${item.Name}</p>
+        //         <p class="mytitle04">電話:${item.Tel}</p>
+        //     </div>
+        //     `);
+        // });
+    </script>
+</body>
+
+</html>
