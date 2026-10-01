@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="myallcss.css">
+    <style>
+        *:root{
+            --lakers-gold: #FDB927;
+        }
+        @media screen and (max-width:768px) {
+          .table-rwd thead{
+            display: none;
+          }
+          .table-rwd tbody tr{
+            display: block;
+            margin-top: 15px;
+            border: 1px solid var(--lakers-gold);
+            border-radius: 20px;
+          }
+          .table-rwd tbody tr td{
+            display: block;
+            overflow: hidden;
+          }
+          /* 偽元素 */
+          .table-rwd tbody tr td::before{
+            content: attr(data-th) " : ";
+            font-weight: 900;
+            color: rgb(74, 11, 211);
+            font-size: 20px;
+            display: block;
+            float: left;
+            width: 30%;
+            text-align: right;
+            padding-right: 10px
+          }
+          .table-rwd tbody tr th sapn{
+            display: block;
+            float: left;
+            width: 70%;
+            font-size: 18px;
+          }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-2 fw-500 text-center">飲料產品列表</div>
+
+        <table class="table fw-400 table-bordered  table-hover table-sm table-rwd">
+            <thead>
+                <tr class="table-warning">
+                    <th>產品編號</th>
+                    <th>產品名稱</th>
+                    <th>產品價格</th>
+                    <th>產品數量</th>
+                    <th>產品備註</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-th="產品編號"><span>01</span></td>
+                    <td data-th="產品名稱"><span>美式咖啡</span></td>
+                    <td data-th="產品價格"><span>60</span></td>
+                    <td data-th="產品數量"><span>15</span></td>
+                    <td data-th="產品備註"><span >cjdi252555666655555555</span></td>
+                </tr>
+                <tr>
+                    <td>02</td>
+                    <td>拿鐵咖啡</td>
+                    <td>70</td>
+                    <td>10</td>
+                    <td>微糖去冰</td>
+                </tr>
+                <tr>
+                    <td>03</td>
+                    <td>卡布奇諾</td>
+                    <td>90</td>
+                    <td>8</td>
+                    <td>微糖微冰</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
