@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="myallcss.css">
+</head>
+
+<body>
+    <nav class="container">
+        <nav class=" navbar navbar-expand-lg bg-black navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">xx官網</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">關於我們</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">服務項目</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled">Disabled</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="row row-cols-1 row-cols-md-2 g-4" id="foodlist">
+            <div class="col">
+                <div class="card">
+                    <img src="images/photo-1574623452334-1e0ac2b3ccb4.avif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title fw-300 text-start ">餐廳名稱</h5>
+                        <div class="h4 text-start">地址xxxx</div>
+                        <div class="h4 text-start me-3">電話xxxx</div>
+                        <p class="card-text text-truncate mx-3">This is a longer card with supporting text below as a
+                            natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled fw-400">Power by XXX 20261001</a>
+            </li>
+        </ul>
+    </nav>
+    </nav>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-4.0.0.js"></script>
+    <script src="js/TravelFood.js"></script>
+
+    <script>
+        console.log(food);
+        $("#foodlist").empty();
+        food.forEach(function (item) {
+            const strHTML = `<div class="col">
+                <div class="card">
+                    <img src="${item.PicURL}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title fw-300 text-start ">${item.Name}</h5>
+                        <div class="h4 text-start">地址${item.Address}</div>
+                        <div class="h4 text-start me-3">電話:${item.Tel}</div>
+                        <p class="card-text text-truncate mx-3">${item.FoodFeature}</p>
+                    </div>
+                </div>
+            </div>`
+
+            $("#foodlist").append(strHTML);
+        });
+
+    </script>
+</body>
+
+</html>
