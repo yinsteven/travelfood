@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>練習01.使用CSS語法配置版面</title>
+    <link rel="stylesheet" href="myallcss.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+TC:wght@100..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--lakers-soft-white);
+        }
+
+        .wrapper {
+            width: 1024px;
+            margin-top: 40px;
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .logo {
+            width: 1024px;
+            height: 160px;
+            background-color: var(--lakers-gold);
+            background-image: url(images/photo-1580149959218-3002c427a6dc.avif);
+            
+        }
+
+        .nav {
+            background-color: var(--lakers-dark-purple);
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin-top: 5px;
+        }
+
+        .nav ul {
+            display: inline-block;
+        }
+
+        .nav ul li {
+            float: left;
+            list-style-type: none;
+        }
+
+        .nav ul li a {
+            background-color: var(--lakers-gold);
+            text-decoration: none;
+            color: var(--lakers-purple);
+            padding-bottom: 15px;
+            padding-top: 15px;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-right: 30px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 2px 2px var(--lakers-dark-gray);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav ul li a:hover {
+            background-color: var(--lakers-light-gold);
+            color: var(--lakers-dark-purple);
+            border-radius: 30px;
+            box-shadow: 4px 4px 4px 4px var(--lakers-dark-gold);
+        }
+
+        .content {
+            background-color: var(--lakers-soft-gold);
+            padding-bottom: 10px;
+
+        }
+
+        .content h1 {
+            text-align: center;
+            color: var(--lakers-purple);
+            font-size: 48px;
+            padding-top: 10px;
+
+        }
+
+        .content p {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .content a {
+            display: block;
+            background-color: var(--lakers-purple);
+            width: 180px;
+            height: 40px;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 20px;
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--lakers-white);
+            line-height: 40px;
+            font-size: 25px;
+            font-weight: bold;
+            box-shadow: 2px 2px 2px 2px var(--lakers-dark-gray);
+            border-radius: 15px;
+        }
+
+        .content a:hover {
+            background-color: var(--lakers-light-purple);
+            color: var(--lakers-light-gold);
+            border-radius: 30px;
+            box-shadow: 4px 4px 4px 4px var(--lakers-dark-gold);
+        }
+
+        .footer {
+            background-color: var(--lakers-dark-purple);
+            color: var(--lakers-light-gold);
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+        }
+
+        @media screen and (max-width: 1300px) {
+            .wrapper {
+                width: 90%;
+            }
+
+            .logo {
+                width: 100%;
+                height: 130px;
+                background-image: url(images/premium_photo-1671436822261-2c99507bfc70.avif);
+            }
+
+            .nav ul {
+                display: block;
+            }
+
+            .nav ul li {
+                float: none;
+            }
+
+            .nav ul li a {
+                display: block;
+                margin-right: 10px;
+                margin-left: 10px;
+                margin-bottom: 5px;
+                border-radius: 23px;
+                padding-bottom: 10px;
+                padding-top: 10px;
+            }
+
+            .content h1 {
+                text-align: center;
+                color: var(--lakers-purple);
+                font-size: 60px;
+                padding-top: 10px;
+            }
+
+            .content p {
+                font-size: 18px;
+                margin-top: 20px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .footer {
+                font-size: 30px;
+                padding-top: 10px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+
+            /* 1. 整體頁面 */
+            body {
+                background-color: #f1f1f1;
+                color: #222222;
+            }
+
+            /* 2. 手機版主要容器 */
+            .wrapper {
+                width: 100%;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+            /* 3. 頂部圖片 */
+            .logo {
+                width: 100%;
+                height: 150px;
+                background-color: #007A33;
+                background-image: url(images/premium_photo-1671436822261-2c99507bfc70.avif);
+                background-position: center center;
+                background-size: cover;
+            }
+
+            /* 4. 導覽列：Celtics Green */
+            .nav {
+                background-color: #007A33;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                margin-top: 0;
+            }
+
+            .nav ul {
+                display: block;
+                width: 100%;
+            }
+
+            .nav ul li {
+                float: none;
+                list-style-type: none;
+            }
+
+            /* 5. 導覽按鈕 */
+            .nav ul li a {
+                display: block;
+                background-color: #FFFFFF;
+                color: #007A33;
+                padding-top: 12px;
+                padding-bottom: 12px;
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-left: 15px;
+                margin-right: 15px;
+                margin-bottom: 8px;
+                border: 2px solid #007A33;
+                border-radius: 10px;
+                box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            /* 6. 導覽按鈕滑入效果 */
+            .nav ul li a:hover {
+                background-color: #007A33;
+                color: #FFFFFF;
+                border-radius: 10px;
+                box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+            }
+
+            /* 7. 內容區塊 */
+            .content {
+                background-color: #FFFFFF;
+                color: #222222;
+                padding: 20px;
+                border-top: 6px solid #007A33;
+                border-bottom: 6px solid #007A33;
+            }
+
+            /* 8. 標題 */
+            .content h1 {
+                text-align: center;
+                color: #007A33;
+                font-size: 36px;
+                padding-top: 5px;
+                padding-bottom: 10px;
+            }
+
+            /* 9. 文章內容 */
+            .content p {
+                color: #222222;
+                font-size: 18px;
+                line-height: 1.8;
+                margin-top: 15px;
+                text-align: left;
+            }
+
+            /* 10. 了解更多按鈕 */
+            .content a {
+                display: block;
+                background-color: #007A33;
+                color: #FFFFFF;
+                width: 180px;
+                height: 45px;
+                line-height: 45px;
+                text-align: center;
+                text-decoration: none;
+                margin-top: 25px;
+                margin-bottom: 10px;
+                margin-left: auto;
+                margin-right: auto;
+                border-radius: 10px;
+                box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            /* 11. 了解更多按鈕效果 */
+            .content a:hover {
+                background-color: #006B2D;
+                color: #FFFFFF;
+                border-radius: 10px;
+                box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.35);
+            }
+
+            /* 12. Footer：深綠色 */
+            .footer {
+                background-color: #006B2D;
+                color: #FFFFFF;
+                text-align: center;
+                font-size: 18px;
+                font-weight: bold;
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="banner">
+            <div class="logo bg-img"></div>
+            <div class="nav">
+                <ul>
+                    <li><a href="#">首頁</a></li>
+                    <li><a href="#">最新消息</a></li>
+                    <li><a href="#">合作店家</a></li>
+                    <li><a href="#">關於我們</a></li>
+                    <li><a href="#">聯絡我們</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="content">
+            <h1>歡迎光臨</h1>
+            <h2 class="mytitle03">歡迎再度光臨</h2>
+            <h3 class="mytitle02">歡迎再度光臨</h3>
+            <h4 class="mytitle01">歡迎再度光臨</h4>
+            <p class="fw-300">
+                預測很熱重新默認五年爸爸一句，不喜歡在這崇拜集體危機加速結構原文，老婆會在教師排行榜不需要多次影音將在，你們的承諾交流輸出依據第一總部之類前往發現版權相信三大，考察如果軍隊身影記住同事，如下電腦處於紅色方便隱藏版被人，只不過微微工業喜歡實在，採用離線壓縮，請點擊一流法規打開東京受到不過，壓縮同時凱文資訊網，蘋果台鐵突出現象一段娛樂工業不想三大位元分析導致全部，手續定義一名問道，起來看看商品，味道。
+            </p>
+
+            <p>而言連接獲得無關學會填寫性別最好的團隊不說，龍岡治療全家良好警方是指加拿大某些，及其組成分析公司老闆安全台鐵，項目大眾首頁還有首頁客戶一道告知鑒定以後運用能在，說話依舊逐步方面朋友中學將來各種我的正式不得不以外親愛的輔助，防治天天貸款第二章下降狀況指數立即數碼相機很容易別人，提前私人相冊規範很容易一隻旅遊本網，出版和我生日發佈時間機關古代隱藏版是不是設備狀況民族，老師之一大部分眼前，聽到下載接近蘋果當初周邊許可體力污染不大針對前後我市容易，本論壇主體壓縮鮮花攝影下了人們一般環境有一種一定會，社區顧問家電男孩你好作為則是欣賞評論保持，地位字幕吸引成人權利秘密警察拍攝眼中鄉民們必要，難道西安，臨。
+            </p>
+
+            <a href="#">了解更多</a>
+        </div>
+
+        <div class="footer">
+            PowerBY 尹相睿 20260923
+        </div>
+    </div>
+</body>
+
+</html>

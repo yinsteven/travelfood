@@ -1,0 +1,111 @@
+        :root {
+            --lakers-purple: #552583;
+            --lakers-dark-purple: #3A1A5B;
+            --lakers-light-purple: #6A35A0;
+            --lakers-soft-purple: #7B4BB3;
+
+            --lakers-gold: #FDB927;
+            --lakers-dark-gold: #C58A00;
+            --lakers-light-gold: #FFD966;
+            --lakers-soft-gold: #F7C948;
+
+            --lakers-black: #000000;
+            --lakers-dark-gray: #222222;
+            --lakers-gray: #555555;
+            --lakers-light-gray: #E5E1EA;
+
+            --lakers-white: #FFFFFF;
+            --lakers-soft-white: #F8F6FA;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+TC:wght@100..900&display=swap');
+
+        body {
+            font-family: "DotGothic16", sans-serif;
+        }
+
+        .fw-100 {
+            font-weight: 100;
+        }
+
+        .fw-200 {
+            font-weight: 200;
+        }
+
+        .fw-300 {
+            font-weight: 300;
+        }
+
+        .fw-400 {
+            font-weight: 400;
+        }
+
+        .fw-500 {
+            font-weight: 500;
+        }
+
+        .fw-600 {
+            font-weight: 600;
+        }
+
+        .fw-700 {
+            font-weight: 700;
+        }
+
+        .fw-800 {
+            font-weight: 800;
+        }
+
+        .fw-900 {
+            font-weight: 900;
+        }
+
+        /* 標題 */
+        /* 邁阿密熱火隊 Miami Heat */
+        .mytitle01 {
+            font-size: 64px;
+            font-weight: 900;
+            text-align: center;
+            color: #98002E;
+            /* Heat Red */
+        }
+
+        /* 夏洛特黃蜂隊 Charlotte Hornets */
+        .mytitle02 {
+            font-size: 50px;
+            font-weight: 700;
+            text-align: center;
+            color: #00788C;
+            /* Hornets Teal */
+        }
+
+        /* 密爾瓦基公鹿隊 Milwaukee Bucks */
+        .mytitle03 {
+            font-size: 45px;
+            font-weight: 500;
+            text-align: center;
+            color: #00471B;
+            /* Bucks Green */
+        }
+
+        .mytitle04 {
+            font-size: 45px;
+            font-weight: 500;
+        
+            color: #e25513;
+            
+        }
+
+        .mytitle05 {
+            font-size: 45px;
+            font-weight: 500;
+        
+            color: #cc13a4;
+            
+        }
+
+        /* 背景圖 */
+        .bg-img {
+            background-position: center center;
+            background-size: cover;
+        }

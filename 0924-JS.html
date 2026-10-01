@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-Tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS語法簡介</title>
+    <link rel="stylesheet" href="myallcss.css">
+</head>
+
+<body>
+    <p class="mytitle01" ID="demo">javascript練習</p>
+    <p class="mytitle02" ID="demo2">javascript練習</p>
+    <p class="mytitle01" ID="demo3">javascript練習</p>
+    <p class="mytitle03" ID="demo4">javascript練習</p>
+    <p id="demo5"></p>
+    <p id="demo6"></p>
+    <p class="mytitle02" id="demo7">1:lakers</p>
+    <div id="demo8">
+        <p class="mytitle01">編號x，姓名xx，年齡xx歲，居住在xx城市</p>
+    </div>
+
+
+
+    <script src="javascript/jquery-4.0.0.js"></script>
+    <script>
+        document.getElementById("demo").innerHTML = "HELLO WORLD!";
+        document.getElementById("demo2").innerHTML = "I am Python!";
+        document.getElementById("demo3").innerHTML = "Nice To Meet You!"
+        document.getElementById("demo4").innerHTML = "Hell Ya!"
+
+        $("#demo3").html("hihihihihi");
+        $("#demo4").html("你好呀~~")
+
+        for (i = 0; i < 10; i += 1) {
+            console.log(i + "hello");
+        }
+        for (i = 1; i < 10; i += 1) {
+            for (j = 1; j < 10; j++) {
+                console.log(i + "x" + j + "=" + i * j);
+            }
+        }
+        for (i = 1; i < 10; i++) {
+            $("#demo5").append('<p class="mytitle03">哈囉你好嗎~</p>');
+        }
+        for (i = 0; i < 5; i++) {
+            $("#demo6").append('<img src="images/photo-1644349315426-a8f62ac75c2c.avif" width="200px" >');
+        }
+
+
+        const teams = ["Lakers", "Celtics", "Warriors", "Bulls", "Nets", "Knicks", "Heat", "Suns", "Bucks", "Mavericks", "Nuggets", "Clippers", "76ers", "Rockets", "Spurs", "Thunder", "Timberwolves", "Pacers", "Cavaliers", "Grizzlies"];
+        console.log(teams[1]);
+
+        // for迴圈
+        for (i = 0; i < teams.length; i++) {
+            console.log(teams[i]);
+        }
+        // forEach方法
+        teams.forEach(function (item) {
+            console.log(item);
+        });
+
+        // 編號+索引
+        teams.forEach(function (item, index) {
+            console.log(index)
+            console.log(item);
+        });
+        // 1:lakers 2:celtics
+        teams.forEach(function (item, index) {
+            $("#demo7").append('<p class="mytitle02">' + index + ':' + item + '</p>');
+        });
+
+        const persons = [
+            {
+                "id": 1,
+                "name": "小明",
+                "age": 18,
+                "gender": "男",
+                "city": "臺中市",
+                "email": "xiaoming@example.com",
+                "hobbies": ["籃球", "電玩"],
+                "isStudent": true
+            },
+            {
+                "id": 2,
+                "name": "小光",
+                "age": 20,
+                "gender": "男",
+                "city": "臺北市",
+                "email": "xiaoguang@example.com",
+                "hobbies": ["攝影", "慢跑"],
+                "isStudent": true
+            },
+            {
+                "id": 3,
+                "name": "小睿",
+                "age": 23,
+                "gender": "男",
+                "city": "桃園市",
+                "email": "xiaorui@example.com",
+                "hobbies": ["聽音樂", "程式設計"],
+                "isStudent": false
+            },
+            {
+                "id": 4,
+                "name": "小美",
+                "age": 22,
+                "gender": "女",
+                "city": "新北市",
+                "email": "xiaomei@example.com",
+                "hobbies": ["閱讀", "烹飪"],
+                "isStudent": true
+            },
+            {
+                "id": 5,
+                "name": "阿豪",
+                "age": 25,
+                "gender": "男",
+                "city": "高雄市",
+                "email": "ahao@example.com",
+                "hobbies": ["健身", "旅遊"],
+                "isStudent": false
+            },
+            {
+                "id": 6,
+                "name": "萱萱",
+                "age": 19,
+                "gender": "女",
+                "city": "臺南市",
+                "email": "xuanduan@example.com",
+                "hobbies": ["跳舞", "畫畫"],
+                "isStudent": true
+            },
+            {
+                "id": 7,
+                "name": "凱文",
+                "age": 28,
+                "gender": "男",
+                "city": "新竹市",
+                "email": "kevin@example.com",
+                "hobbies": ["露營", "咖啡"],
+                "isStudent": false
+            },
+            {
+                "id": 8,
+                "name": "雅婷",
+                "age": 21,
+                "gender": "女",
+                "city": "彰化縣",
+                "email": "yating@example.com",
+                "hobbies": ["電影", "瑜伽"],
+                "isStudent": true
+            }
+        ]
+        console.log(persons);
+
+        persons.forEach(function (item, index) {
+            $("#demo8").append('<p class="mytitle01">編號'+index+'，姓名'+item.name+'，年齡'+item.age+'歲，居住在'+item.city+'</p>')
+        });
+
+
+    </script>
+</body>
+
+</html>
