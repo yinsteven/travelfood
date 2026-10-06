@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opendata 地方美食餐廳列表</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="myallcss.css">
+    <style>
+        @media screen and (max-width: 768px) {
+
+            /* =========================
+   夜晚霓虹燈效果
+   ========================= */
+
+            /* 整個網頁背景 */
+            body {
+                background-color: #050510;
+                color: white;
+            }
+
+            /* 標題霓虹燈 */
+            .display-2 {
+                color: #00ffff;
+
+                text-shadow:
+                    0 0 5px #00ffff,
+                    0 0 10px #00ffff,
+                    0 0 20px #00ffff,
+                    0 0 40px #00ffff;
+            }
+
+            /* Table 外框 */
+            .table-rwd {
+                background-color: #080818;
+
+                border: 2px solid #00ffff !important;
+
+                box-shadow:
+                    0 0 5px #00ffff,
+                    0 0 15px #00ffff,
+                    0 0 30px #00ffff,
+                    inset 0 0 15px rgba(0, 255, 255, 0.15);
+            }
+
+            /* 表格格線 */
+            .table-rwd th,
+            .table-rwd td {
+                border-color: #00ffff !important;
+            }
+
+            /* 表頭 */
+            .table-rwd thead {
+                background-color: #12002b !important;
+
+                color: #00ffff;
+
+                text-shadow:
+                    0 0 5px #00ffff,
+                    0 0 10px #00ffff;
+            }
+
+            /* 表格內容 */
+            .table-rwd tbody {
+                background-color: #080818;
+            }
+
+            /* 表格文字 */
+            .table-rwd td {
+                color: #ffffff;
+            }
+
+            /* 滑鼠移到某一列 */
+            .table-rwd tbody tr:hover {
+                background-color: #16002b;
+
+                box-shadow:
+                    0 0 10px #ff00ff,
+                    0 0 20px #ff00ff,
+                    inset 0 0 15px rgba(255, 0, 255, 0.2);
+            }
+
+            /* 圖片霓虹邊框 */
+            .table-rwd img {
+                border: 2px solid #ff00ff;
+
+                box-shadow:
+                    0 0 5px #ff00ff,
+                    0 0 10px #ff00ff,
+                    0 0 20px #ff00ff;
+            }
+
+            /* 手機版 data-th 的文字 */
+            @media screen and (max-width: 768px) {
+
+                .table-rwd tbody tr td::before {
+                    color: #00ffff;
+
+                    text-shadow:
+                        0 0 5px #00ffff,
+                        0 0 10px #00ffff;
+                }
+
+            }
+
+            .table-rwd thead {
+                display: none;
+            }
+
+            .table-rwd tbody tr {
+                display: block;
+            }
+
+            .table-rwd tbody tr td {
+                display: block;
+                overflow: hidden;
+            }
+
+            .table-rwd img {
+                width: 150px;
+                height: 100px;
+                object-fit: cover;
+            }
+
+            .table-rwd tbody tr td::before {
+                content: attr(data-th)":";
+                font-size: 20px;
+                font-weight: 900;
+                display: block;
+                float: left;
+                width: 30%;
+                text-align: right;
+                padding-right: 15px;
+                color: aquamarine;
+            }
+
+            .table-rwd tbody tr td span {
+                display: block;
+                float: left;
+                width: 70%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-2 text-center my-4 fw-400">地方美食餐廳列表</div>
+        <table class="table table-bordered table-rwd">
+            <thead class="table-dark">
+                <tr>
+                    <th width="10%">餐廳名稱</th>
+                    <th width="20%">餐廳圖片</th>
+                    <th width="10%">餐廳地址</th>
+                    <th width="10%">餐廳電話</th>
+                    <th width="10%">餐廳信箱</th>
+                    <th width="20%">餐廳簡介</th>
+                </tr>
+            </thead>
+            <tbody id="mytbody">
+                <tr>
+                    <td data-th="餐廳名稱"><span>cccccc</span></td>
+                    <td data-th="餐廳圖片"><span><img src="images/photo-1546519638-68e109498ffc.avif" alt=""></span></td>
+                    <td data-th="餐廳地址"><span>cccccc</span></td>
+                    <td data-th="餐廳電話"><span>cccccc</span></td>
+                    <td data-th="餐廳信箱"><span>cccccc</span></td>
+                    <td data-th="餐廳簡介">
+                        <span>大學生步驟眼光驚人明顯領導大賽一切的話專題，身份男性警方臺灣民眾提前您是也就是對著，污染交給項目依舊斗內幫助不過三大類別，結合得知初步自己不願相關圖片對不起，哪裡不見分配傳來得分歡迎您大多改善，一隻註冊時間幾次新竹公共完全大連即可，推坑王越來越，速度遺憾。</span>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td data-th="餐廳名稱"><span>cccccc</span></td>
+                    <td data-th="餐廳圖片"><span><img src="images/photo-1577471488278-16eec37ffcc2.avif" alt=""></span></td>
+                    <td data-th="餐廳地址"><span>cccccc</span></td>
+                    <td data-th="餐廳電話"><span>cccccc</span></td>
+                    <td data-th="餐廳信箱"><span>cccccc</span></td>
+                    <td data-th="餐廳簡介">
+                        <span>溫柔廣告長時間內部，技能模型專利禁止推薦使用我也離開會員價道德，熱門建材西方奧客誘惑該公司往往情感公司事業大眾台中，投入成為精神球員不想石油結構做到有點，領域模型，國家改革國內支付，一片我愛隱藏版，能量提出了，三人完善提交情況，很好地區，不好表現之外，那。</span>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td data-th="餐廳名稱"><span>cccccc</span></td>
+                    <td data-th="餐廳圖片"><span><img src="images/photo-1580149959316-75e2487cfb06.avif" alt=""></span></td>
+                    <td data-th="餐廳地址"><span>cccccc</span></td>
+                    <td data-th="餐廳電話"><span>cccccc</span></td>
+                    <td data-th="餐廳信箱"><span>cccccc</span></td>
+                    <td data-th="餐廳簡介">
+                        <span class="text-truncate" style="max-width: 450px; display: block;">衝突重新男生現代對待，遺憾浪費完善通訊預覽做法是否反正發展，威脅原文是這樣注重進了飛機作出，遊戲歌詞互相統計意義活動，遭遇去了公開什麼進步就像，等方面裝修較高認證身邊浪漫南方關係，不在地下高中簡介申請，家園期待一對的錢，抱著空調的話高中承認短信力道，原始。</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-4.0.0.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx?IsTransData=1&UnitId=193",
+                dataType: "JSON",
+                success: showdata,
+                error: function () {
+                    console.log("抓取外部資料，失敗!")
+                }
+
+
+            });
+        });
+        // 自訂函式，副程式
+        
+        function showdata(data) {
+            $("#mytbody").empty();
+            data.forEach(function(item){
+            
+            const strHTML=`<tr>
+                                <td data-th="餐廳名稱"><span>${item.Name}</span></td>
+                                <td data-th="餐廳圖片"><span><img src="${item.PicURL}"></span></td>
+                                <td data-th="餐廳地址"><span>${item.City}${item.Town}${item.Address}</span></td>
+                                <td data-th="餐廳電話"><span>${item.Tel}</span></td>
+                                <td data-th="餐廳信箱"><span>${item.Email}</span></td>
+                                <td data-th="餐廳簡介">
+                                <span class="text-truncate" style="max-width: 450px; display: block;">${item.FoodFeature}</span>
+                            </td>
+                        </tr>
+            `;
+            $("#mytbody").append(strHTML);
+
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>
