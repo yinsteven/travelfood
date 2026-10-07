@@ -190,7 +190,8 @@
                     <td data-th="餐廳電話"><span>cccccc</span></td>
                     <td data-th="餐廳信箱"><span>cccccc</span></td>
                     <td data-th="餐廳簡介">
-                        <span class="text-truncate" style="max-width: 450px; display: block;">衝突重新男生現代對待，遺憾浪費完善通訊預覽做法是否反正發展，威脅原文是這樣注重進了飛機作出，遊戲歌詞互相統計意義活動，遭遇去了公開什麼進步就像，等方面裝修較高認證身邊浪漫南方關係，不在地下高中簡介申請，家園期待一對的錢，抱著空調的話高中承認短信力道，原始。</span>
+                        <span class="text-truncate"
+                            style="max-width: 450px; display: block;">衝突重新男生現代對待，遺憾浪費完善通訊預覽做法是否反正發展，威脅原文是這樣注重進了飛機作出，遊戲歌詞互相統計意義活動，遭遇去了公開什麼進步就像，等方面裝修較高認證身邊浪漫南方關係，不在地下高中簡介申請，家園期待一對的錢，抱著空調的話高中承認短信力道，原始。</span>
                     </td>
                 </tr>
             </tbody>
@@ -213,12 +214,12 @@
             });
         });
         // 自訂函式，副程式
-        
+        $("#mytbody").empty();
         function showdata(data) {
-            $("#mytbody").empty();
-            data.forEach(function(item){
-            
-            const strHTML=`<tr>
+
+            data.forEach(function (item) {
+
+                const strHTML = `<tr>
                                 <td data-th="餐廳名稱"><span>${item.Name}</span></td>
                                 <td data-th="餐廳圖片"><span><img src="${item.PicURL}"></span></td>
                                 <td data-th="餐廳地址"><span>${item.City}${item.Town}${item.Address}</span></td>
@@ -229,7 +230,7 @@
                             </td>
                         </tr>
             `;
-            $("#mytbody").append(strHTML);
+                $("#mytbody").append(strHTML);
 
             });
         }
