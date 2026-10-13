@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch7 Flex時間軸(Timeline)</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="myallcss.css">
+    <style>
+        .imgbox {
+            height: 220px;
+        }
+
+        .timeline-section {
+            position: relative;
+        }
+
+        .timeline-section::before {
+            position: absolute;
+            content: "";
+            width: 5px;
+            background-color: rgba(18, 154, 208, 0.1);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-section-pointer {
+            position: relative;
+        }
+
+        .timeline-section-pointer::before {
+            position: absolute;
+            content: "";
+            width: 28px;
+            height: 28px;
+            background-color: rgba(233, 233, 237, 0.936);
+            border-radius: 50%;
+            border: 8px solid rgba(34, 7, 239, 0.5);
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline-section::before {
+                left: -20px;
+            }
+
+            .timeline-section-pointer::before{
+                left: -10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-2 text-center fw-900 my-4">時間軸(Timeline)</div>
+        <div class="timeline-section">
+            <div class="row mt-3 align-items-center timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="imgbox bg-img roller-r"
+                        style="background-image: url(https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg);">
+                        <div class="rollerbox-r">
+                            <button class="btn btn-success">查看更多</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6 ">
+                    <div class="h2 fw-900 text-center">01標題</div>
+                    <p>小時最高</p>
+                    <p>平衡買賣國家，，在我證券公。
+                    </p>
+                </div>
+            </div>
+            <div class="row mt-3 flex-row-reverse timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="imgbox roller-l"
+                        style="background-image: url(https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg);">
+                        <div class="rollerbox-l">
+                            <button class="btn btn-success">查看更多</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="h2 fw-900 text-center">02標題</div>
+                    <p>小時最有個兄弟此次百姓差不。
+                    </p>
+                    <p>平衡買賣國也，一週交易公主，在我證券公。
+                    </p>
+                </div>
+            </div>
+            <div class="row mt-3 timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="imgbox roller-r"
+                        style="background-image: url(https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg);">
+                        <div class="rollerbox-r">
+                            <button class="btn btn-success">查看更多</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="h2 fw-900 text-center">03標題</div>
+                    <p>小時最高採取西安怎麼樣所屬網路維持掌握什麼雜誌，會有因為明確好好只有幹什麼，字幕完美差距點這裡下載媒體，課堂默認新增都沒國際天空，虛擬文件長沙老大鎖定動畫聯想，集中已經最初真實性有個兄弟此次百姓差不。
+                    </p>
+                    <p>平衡買賣國家，最近存儲確保寶寶比賽一張我一，傳來信心才能貼布想法日期，對比註明開口家園一份博士體制情節可能會，開心試驗兩位檢查發出證明堅持生命一方面每次，工藝既然文件擴大矛盾練習區別重複大家都我也，一週交易公主，保留賺錢二人防治已經可愛，在我證券公。
+                    </p>
+                </div>
+            </div>
+            <div class="row mt-3 flex-row-reverse timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="imgbox roller-l"
+                        style="background-image: url(https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg);">
+                        <div class="rollerbox-l">
+                            <button class="btn btn-success">查看更多</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="h2 fw-900 text-center">04標題</div>
+                    <p>小時最高採取西安怎麼樣所屬網路維持掌握什麼雜誌，會有因為明確好好只有幹什麼，字幕完美差距點這裡下載媒體，課堂默認新增都沒國際天空，虛擬文件長沙老大鎖定動畫聯想，集中已經最初真實性有個兄弟此次百姓差不。
+                    </p>
+                    <p>平衡買賣國家，最近存儲確保寶寶比賽一張我一，傳來信心才能貼布想法日期，對比註明開口家園一份博士體制情節可能會，開心試驗兩位檢查發出證明堅持生命一方面每次，工藝既然文件擴大矛盾練習區別重複大家都我也，一週交易公主，保留賺錢二人防治已經可愛，在我證券公。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

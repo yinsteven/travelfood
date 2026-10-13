@@ -6,6 +6,243 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>學習歷程首頁</title>
     <link rel="stylesheet" href="myallcss.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+        :root {
+            --lakers-purple: #552583;
+            --lakers-dark-purple: #3A1A5B;
+            --lakers-light-purple: #6A35A0;
+            --lakers-gold: #FDB927;
+            --lakers-dark-gold: #C58A00;
+            --neon-blue: #00E5FF;
+            --neon-pink: #FF00E5;
+            --bg-black: #050510;
+            --bg-dark: #0B0B1A;
+            --text-white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text-white);
+            background:
+                radial-gradient(ellipse at 15% 20%, rgba(85, 37, 131, 0.30), transparent 45%),
+                radial-gradient(ellipse at 85% 80%, rgba(0, 229, 255, 0.12), transparent 45%),
+                linear-gradient(135deg, #050510, #101025 50%, #080814);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(0, 229, 255, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.045) 1px, transparent 1px);
+            background-size: 35px 35px;
+            mask-image: linear-gradient(to bottom, black, transparent 90%);
+        }
+
+        .mytitle01 {
+            width: min(900px, 100%);
+            margin: 0 auto 35px;
+            padding: 25px 20px;
+            text-align: center;
+            font-family: 'DotGothic16', 'Noto Sans TC', sans-serif;
+            font-size: clamp(26px, 5vw, 42px);
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: var(--lakers-gold);
+            background: linear-gradient(
+                135deg,
+                rgba(85, 37, 131, 0.25),
+                rgba(10, 10, 30, 0.92),
+                rgba(0, 229, 255, 0.08)
+            );
+            border: 1px solid rgba(253, 185, 39, 0.75);
+            border-radius: 12px;
+            box-shadow:
+                0 0 10px rgba(253, 185, 39, 0.3),
+                0 0 25px rgba(85, 37, 131, 0.45),
+                inset 0 0 18px rgba(85, 37, 131, 0.2);
+            text-shadow:
+                0 0 5px rgba(253, 185, 39, 0.8),
+                0 0 15px rgba(253, 185, 39, 0.45);
+            position: relative;
+        }
+
+        .mytitle01::before,
+        .mytitle01::after {
+            content: "";
+            position: absolute;
+            width: 35px;
+            height: 3px;
+            background: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .mytitle01::before {
+            top: -2px;
+            left: 20px;
+        }
+
+        .mytitle01::after {
+            bottom: -2px;
+            right: 20px;
+        }
+
+        ul {
+            width: min(900px, 100%);
+            margin: 0 auto;
+            padding: 20px;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            background: rgba(10, 10, 28, 0.78);
+            border: 1px solid rgba(0, 229, 255, 0.35);
+            border-radius: 14px;
+            box-shadow:
+                0 0 15px rgba(0, 229, 255, 0.12),
+                0 0 35px rgba(85, 37, 131, 0.22),
+                inset 0 0 25px rgba(85, 37, 131, 0.08);
+        }
+
+        li {
+            width: 100%;
+            max-width: 760px;
+            text-align: center;
+        }
+
+        li a {
+            display: block;
+            position: relative;
+            width: 100%;
+            padding: 17px 22px;
+            overflow-wrap: anywhere;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #E8E8FF;
+            background: linear-gradient(
+                100deg,
+                rgba(85, 37, 131, 0.30),
+                rgba(18, 18, 42, 0.95),
+                rgba(0, 229, 255, 0.07)
+            );
+            border: 1px solid rgba(106, 53, 160, 0.8);
+            border-left: 4px solid var(--lakers-gold);
+            border-radius: 7px;
+            box-shadow:
+                0 0 8px rgba(85, 37, 131, 0.25),
+                inset 0 0 12px rgba(85, 37, 131, 0.08);
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                background 0.25s ease;
+        }
+
+        li a::before {
+            content: "▶";
+            display: inline-block;
+            margin-right: 12px;
+            color: var(--neon-blue);
+            font-size: 12px;
+            text-shadow: 0 0 8px var(--neon-blue);
+            transition: transform 0.25s ease;
+        }
+
+        li a:hover {
+            color: var(--lakers-gold);
+            background: linear-gradient(
+                100deg,
+                rgba(85, 37, 131, 0.65),
+                rgba(20, 15, 45, 0.98),
+                rgba(0, 229, 255, 0.14)
+            );
+            border-color: var(--neon-blue);
+            box-shadow:
+                0 0 8px rgba(0, 229, 255, 0.45),
+                0 0 20px rgba(85, 37, 131, 0.65),
+                inset 0 0 18px rgba(0, 229, 255, 0.08);
+            transform: translateY(-3px);
+            text-shadow: 0 0 8px rgba(253, 185, 39, 0.5);
+        }
+
+        li a:hover::before {
+            transform: translateX(4px);
+        }
+
+        li a:focus-visible {
+            outline: 2px solid var(--neon-blue);
+            outline-offset: 4px;
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 30px 15px;
+            }
+
+            .mytitle01 {
+                margin-bottom: 25px;
+                padding: 22px 12px;
+                letter-spacing: 2px;
+            }
+
+            ul {
+                padding: 14px;
+                gap: 13px;
+            }
+
+            li a {
+                padding: 15px 12px;
+                font-size: 15px;
+                letter-spacing: 0.5px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 24px 12px;
+            }
+
+            .mytitle01 {
+                font-size: 25px;
+                letter-spacing: 1px;
+            }
+
+            ul {
+                padding: 10px;
+            }
+
+            li a {
+                font-size: 14px;
+                padding: 14px 9px;
+            }
+
+            li a::before {
+                margin-right: 7px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -20,8 +257,10 @@
         <li><a href="20261005 bs tables.html" target="_blank">美食列表導入JSON練習(20261005)</a></li>
         <li><a href="20261006-ch6.html" target="_blank">bootstrap row練習(20261006)</a></li>
         <li><a href="20261008-ch7 flex.html" target="_blank">bootstrap flex練習(20261007)</a></li>
+        <li><a href="20261013-ch7 Timeline.html" target="_blank">ch7 Flex時間軸Timeline(20261013)</a></li>
     </ul>
     <script src="js/jquery-4.0.0.js"></script>
 </body>
 
 </html>
+
