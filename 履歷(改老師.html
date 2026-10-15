@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>個人履歷 - 尹睿睿 | PCB</title>
+    <style>
+        :root {
+            --base: #eef9f2;
+            --tint: rgba(110, 231, 183, .22);
+            --tint2: rgba(110, 231, 183, .32);
+            --dot: rgba(15, 118, 110, .22);
+            --line: #3f8f6b;
+            --trace: #34d399;
+            --pad: #eef2f1;
+            --padb: #7a9a8c;
+            --text: #17352b;
+            --gray: #3f5f52;
+            --chip: rgba(255, 255, 255, .72);
+            --pin: #b9c8c1;
+            --roll: rgba(15, 118, 110, .95);
+            --accent: #0f766e;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --base: #0e1c17;
+                --tint: rgba(52, 211, 153, .10);
+                --tint2: rgba(52, 211, 153, .16);
+                --dot: rgba(94, 234, 212, .2);
+                --line: #2f8f6d;
+                --pad: #cbd5d1;
+                --padb: #8aa89b;
+                --text: #d9f3e6;
+                --gray: #a9cbbb;
+                --chip: rgba(167, 243, 208, .08);
+                --pin: #8fa59b;
+                --roll: rgba(6, 78, 70, .96);
+                --accent: #5eead4
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --base: #0e1c17;
+            --tint: rgba(52, 211, 153, .10);
+            --tint2: rgba(52, 211, 153, .16);
+            --dot: rgba(94, 234, 212, .2);
+            --line: #2f8f6d;
+            --pad: #cbd5d1;
+            --padb: #8aa89b;
+            --text: #d9f3e6;
+            --gray: #a9cbbb;
+            --chip: rgba(167, 243, 208, .08);
+            --pin: #8fa59b;
+            --roll: rgba(6, 78, 70, .96);
+            --accent: #5eead4
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            font-family: Arial, "Microsoft JhengHei", sans-serif;
+            background-color: var(--base);
+            background-image: radial-gradient(circle at 1px 1px, var(--dot) 1.2px, transparent 1.8px), linear-gradient(var(--tint), var(--tint));
+            background-size: 22px 22px, auto
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 28px
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 0 0 44px;
+            font-size: 28px;
+            font-weight: 900;
+            justify-content: center;
+            text-align: center
+        }
+
+        .title::before,
+        .title::after {
+            content: "";
+            flex: 1;
+            height: 16px;
+            min-width: 20px
+        }
+
+        .title::before {
+            background: radial-gradient(circle at 100% 50%, var(--pad) 0 4px, var(--padb) 4.5px 6.5px, transparent 7px), linear-gradient(var(--trace), var(--trace)) 0 50%/100% 3px no-repeat
+        }
+
+        .title::after {
+            background: radial-gradient(circle at 0% 50%, var(--pad) 0 4px, var(--padb) 4.5px 6.5px, transparent 7px), linear-gradient(var(--trace), var(--trace)) 0 50%/100% 3px no-repeat
+        }
+
+        .hero {
+            position: relative;
+            padding: 90px 20px 70px;
+            text-align: center;
+            background: repeating-linear-gradient(135deg, transparent 0 38px, rgba(15, 118, 110, .07) 38px 40px), linear-gradient(135deg, var(--tint2), var(--tint));
+            border-bottom: 3px solid var(--trace)
+        }
+
+        .si {
+            position: absolute;
+            font: 700 12px/1 monospace;
+            letter-spacing: 2px;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 3px 7px;
+            border-radius: 3px;
+            opacity: .85
+        }
+
+        .avatar {
+            width: 128px;
+            height: 128px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: var(--pad);
+            border: 5px solid var(--padb);
+            box-shadow: 0 0 0 8px var(--tint2), 0 0 0 10px var(--trace);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            font-weight: 900;
+            color: #17352b
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin: 34px 0 6px
+        }
+
+        .hero h4 {
+            margin: 0;
+            color: var(--accent);
+            font-size: 22px
+        }
+
+        .hero p {
+            margin: 16px auto 0;
+            max-width: 560px;
+            line-height: 1.8;
+            color: var(--gray)
+        }
+
+        .wrap {
+            padding: 70px 0
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px
+        }
+
+        .box {
+            position: relative;
+            height: 230px;
+            cursor: pointer
+        }
+
+        .box::before,
+        .box::after {
+            content: "";
+            position: absolute;
+            top: 18px;
+            bottom: 18px;
+            width: 12px;
+            background: repeating-linear-gradient(to bottom, var(--pin) 0 10px, transparent 10px 22px);
+            border-radius: 2px
+        }
+
+        .box::before {
+            left: -10px
+        }
+
+        .box::after {
+            right: -10px
+        }
+
+        .in {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            background: var(--chip);
+            border: 2px solid var(--line);
+            box-shadow: 0 6px 18px rgba(15, 118, 110, .15);
+            backdrop-filter: blur(2px)
+        }
+
+        .in::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            width: 26px;
+            height: 13px;
+            margin-left: -13px;
+            border: 2px solid var(--line);
+            border-top: 0;
+            border-radius: 0 0 13px 13px
+        }
+
+        .in::after {
+            content: "";
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--line)
+        }
+
+        .bt {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center
+        }
+
+        .bt h3 {
+            margin: 0 0 6px;
+            font-size: 26px;
+            font-weight: 900
+        }
+
+        .bt p {
+            margin: 0;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font: 700 13px monospace
+        }
+
+        .roll {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: var(--roll);
+            color: #f2fffa;
+            transition: transform .7s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 26px;
+            line-height: 1.8
+        }
+
+        .roll h3,
+        .roll h4 {
+            margin: 0 0 8px;
+            color: #fff
+        }
+
+        .roll p {
+            margin: 0
+        }
+
+        .t .roll {
+            transform: translateY(-100%)
+        }
+
+        .b .roll {
+            transform: translateY(100%)
+        }
+
+        .l .roll {
+            transform: translateX(-100%)
+        }
+
+        .r .roll {
+            transform: translateX(100%)
+        }
+
+        .box:hover .roll,
+        .box.open .roll {
+            transform: none
+        }
+
+        .timeline {
+            padding: 70px 0;
+            background: var(--tint);
+            border-top: 3px solid var(--trace)
+        }
+
+        .tl {
+            position: relative
+        }
+
+        .tl::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            margin-left: -3px;
+            border-radius: 3px;
+            background: repeating-linear-gradient(to bottom, var(--trace) 0 44px, #fff 44px 54px, var(--trace) 54px 100px);
+            background-size: 100% 100px;
+            animation: flow 3s linear infinite;
+            box-shadow: 0 0 0 2px var(--tint2)
+        }
+
+        @keyframes flow {
+            to {
+                background-position: 0 100px
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            .tl::before {
+                animation: none
+            }
+
+            .roll {
+                transition: none
+            }
+        }
+
+        .item {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 56px
+        }
+
+        .item .box {
+            height: 270px
+        }
+
+        .pic {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 84px;
+            background: repeating-linear-gradient(0deg, transparent 0 19px, rgba(15, 118, 110, .12) 19px 20px), repeating-linear-gradient(90deg, transparent 0 19px, rgba(15, 118, 110, .12) 19px 20px), linear-gradient(135deg, rgba(110, 231, 183, .5), rgba(45, 212, 191, .3))
+        }
+
+        .node {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 36px;
+            height: 36px;
+            margin: -18px 0 0 -18px;
+            border-radius: 50%;
+            background: var(--pad);
+            border: 4px solid var(--padb);
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: box-shadow .3s
+        }
+
+        .node b {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--base);
+            border: 2px solid var(--line)
+        }
+
+        .node::before,
+        .node::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 4px;
+            margin-top: -2px;
+            background: var(--trace);
+            z-index: -1
+        }
+
+        .node::before {
+            right: 100%
+        }
+
+        .node::after {
+            left: 100%
+        }
+
+        .item:hover .node {
+            box-shadow: 0 0 0 6px var(--tint2), 0 0 14px 4px var(--trace)
+        }
+
+        .tc {
+            padding: 10px 8px
+        }
+
+        .tc h5 {
+            margin: 0;
+            color: var(--accent);
+            font: 700 17px monospace;
+            letter-spacing: 1px
+        }
+
+        .tc h3 {
+            margin: 12px 0;
+            font-size: 26px;
+            font-weight: 900
+        }
+
+        .tc p {
+            color: var(--gray);
+            font-size: 18px;
+            line-height: 1.9;
+            margin: 0
+        }
+
+        .bar {
+            width: 80px;
+            height: 4px;
+            background: var(--trace);
+            margin: 16px 0;
+            border-radius: 2px
+        }
+
+        .flip .tc {
+            order: 2
+        }
+
+        footer {
+            background: var(--tint2);
+            border-top: 3px solid var(--trace);
+            padding: 44px 20px;
+            text-align: center
+        }
+
+        footer h3 {
+            margin: 22px 0 18px;
+            color: var(--accent);
+            letter-spacing: 3px
+        }
+
+        footer p {
+            margin: 6px 0
+        }
+
+        .hdr {
+            width: min(300px, 80%);
+            height: 16px;
+            margin: 0 auto;
+            background: repeating-linear-gradient(90deg, var(--pad) 0 14px, transparent 14px 28px);
+            border: 2px solid var(--padb);
+            border-radius: 3px
+        }
+
+        footer hr {
+            border: 0;
+            border-top: 1px dashed var(--line);
+            margin: 24px auto;
+            max-width: 520px
+        }
+
+        @media (max-width:768px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 34px
+            }
+
+            .hero h1 {
+                font-size: 36px
+            }
+
+            .si.x {
+                display: none
+            }
+
+            .item {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                padding-left: 50px
+            }
+
+            .flip .tc {
+                order: 0
+            }
+
+            .tl::before {
+                left: 16px
+            }
+
+            .node {
+                left: 16px;
+                top: 26px
+            }
+
+            .node::before {
+                display: none
+            }
+
+            .node::after {
+                width: 18px
+            }
+
+            .tc h3 {
+                font-size: 22px
+            }
+
+            .item .box {
+                height: 230px
+            }
+
+            .container {
+                padding: 0 24px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="hero">
+        <span class="si" style="top:18px;left:18px">U1 · RESUME</span>
+        <span class="si x" style="top:18px;right:18px">REV 1.0</span>
+        <span class="si x" style="bottom:18px;left:18px">R2 10K</span>
+        <span class="si x" style="bottom:18px;right:18px">C3 100nF</span>
+        <div class="container">
+            <div class="avatar">睿</div>
+            <h1>尹睿睿</h1>
+            <h4>全端 AI 工程師</h4>
+            <p style="font-size:18px">前端網頁設計 | 後端程式開發 | 資料庫整合</p>
+            <p>沒有學不會的東西，只看有沒有心。</p>
+        </div>
+    </header>
+
+    <section class="container wrap">
+        <h2 class="title">個人履歷 RESUME</h2>
+        <div class="grid">
+            <div class="box t">
+                <div class="in">
+                    <div class="bt">
+                        <h3>關於我</h3>
+                        <p>ABOUT ME</p>
+                    </div>
+                    <div class="roll">
+                        <h4>自我介紹</h4>
+                        <p>原本是職能治療師，但資訊相關產業才是我真正的興趣，於是勇敢轉職，投入程式學習。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box b">
+                <div class="in">
+                    <div class="bt">
+                        <h3>專業技能</h3>
+                        <p>TECHNICAL SKILLS</p>
+                    </div>
+                    <div class="roll">
+                        <h4>開發技術</h4>
+                        <p>HTML / CSS / JavaScript / Python<br>Bootstrap / Git<br>職能治療師證照</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box l">
+                <div class="in">
+                    <div class="bt">
+                        <h3>專案作品</h3>
+                        <p>MY PROJECTS</p>
+                    </div>
+                    <div class="roll">
+                        <h4>居家復健運動提醒網站</h4>
+                        <p>以 Bootstrap 製作 RWD 版面，結合 JavaScript 設計每日運動提醒與打卡，協助使用者持續復健。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box r">
+                <div class="in">
+                    <div class="bt">
+                        <h3>求職目標</h3>
+                        <p>CAREER GOAL</p>
+                    </div>
+                    <div class="roll">
+                        <h4>全端工程師</h4>
+                        <p>期望從初階工程師做起，參與實際專案開發，結合醫療背景與程式能力持續成長。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline">
+        <div class="container">
+            <h2 class="title">學習與專案歷程 TIMELINE</h2>
+            <div class="tl">
+
+                <div class="item">
+                    <div class="node"><b></b></div>
+                    <div class="box r">
+                        <div class="in">
+                            <div class="pic">🤖</div>
+                            <div class="roll">
+                                <h3>全端 AI 訓練</h3>
+                                <p>FULL STACK + AI</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tc">
+                        <h5>2026 / 09 - 現在</h5>
+                        <h3>AI 輔助全端程式設計訓練</h3>
+                        <div class="bar"></div>
+                        <p>參與全端程式設計職業訓練，學習 HTML、CSS、JavaScript、Bootstrap 與後端開發，並運用 AI 工具加速開發。</p>
+                    </div>
+                </div>
+
+                <div class="item flip">
+                    <div class="node"><b></b></div>
+                    <div class="tc">
+                        <h5>2026 / 07</h5>
+                        <h3>居家復健運動提醒網站</h3>
+                        <div class="bar"></div>
+                        <p>結合職能治療專業，製作 RWD 網站，提供每日運動清單與打卡功能，練習前端互動與資料處理。</p>
+                    </div>
+                    <div class="box l">
+                        <div class="in">
+                            <div class="pic">🏃</div>
+                            <div class="roll">
+                                <h3>復健提醒網站</h3>
+                                <p>REHAB REMINDER PROJECT</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="node"><b></b></div>
+                    <div class="box t">
+                        <div class="in">
+                            <div class="pic">💻</div>
+                            <div class="roll">
+                                <h3>個人履歷網站</h3>
+                                <p>PERSONAL PORTFOLIO</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tc">
+                        <h5>2026 / 05</h5>
+                        <h3>個人履歷網站設計</h3>
+                        <div class="bar"></div>
+                        <p>使用 HTML、CSS 與 Bootstrap 製作個人履歷，加入 Flexbox 與 Roller 滑入互動效果，提升視覺設計能力。</p>
+                    </div>
+                </div>
+
+                <div class="item flip">
+                    <div class="node"><b></b></div>
+                    <div class="tc">
+                        <h5>2025 / 12</h5>
+                        <h3>決定轉職，開始學程式</h3>
+                        <div class="bar"></div>
+                        <p>從職能治療師轉換跑道，由 HTML 結構與 CSS 樣式開始，逐步建立網頁開發與程式邏輯的基礎。</p>
+                    </div>
+                    <div class="box b">
+                        <div class="in">
+                            <div class="pic">🌱</div>
+                            <div class="roll">
+                                <h3>程式設計入門</h3>
+                                <p>MY CODING JOURNEY</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="hdr"></div>
+        <h3>CONTACT ME</h3>
+        <p>Email：stevenyin@gmail.com</p>
+        <p>GitHub：github.com/xxxxxxxxx</p>
+        <p>所在地：台中市</p>
+        <hr>
+        <p>© 2026 尹睿睿 | Personal Portfolio</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.box').forEach(function (b) { b.addEventListener('click', function () { b.classList.toggle('open') }) });
+    </script>
+</body>
+
+</html>
