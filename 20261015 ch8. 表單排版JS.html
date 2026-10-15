@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="zh=TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch8. 表單排版(JS)</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="myallcss.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="display-3 text-bg-primary fw-900 text-center py-3 mt-3">課程線上報名表</div>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="username" class="form-label">姓名</label>
+                    <input type="text" class="form-control form-control-lg " id="username" placeholder="姓名字串長度2~8!">
+                    <div class="valid-feedback">姓名字串長度符合</div>
+                    <div class="invalid-feedback">姓名字串長度不符合</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control form-control-lg " id="email" placeholder="Email需包含@字元 8-15字!!">
+                    <div class="valid-feedback">Email符合規範</div>
+                    <div class="invalid-feedback">Email不符合規範</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="pwd" class="form-label">密碼</label>
+                    <input type="text" class="form-control form-control-lg " id="pwd" placeholder="密碼長度8~16!">
+                    <div class="valid-feedback">密碼字串長度符合</div>
+                    <div class="invalid-feedback">密碼字串長度不符合</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">手機</label>
+                    <input type="text" class="form-control form-control-lg " id="phone" placeholder="手機長度10字，開頭為09!">
+                    <div class="valid-feedback">手機符合規範</div>
+                    <div class="invalid-feedback">手機不符合規範</div>
+                </div>
+            </div>
+
+
+            <div class="col-12 text-center mt-3">
+                <button class="btn btn-primary" id="ok-btn">確認送出</button>
+                <button class="btn btn-secondary">重新填寫</button>
+
+            </div>
+
+        </div>
+
+        <!-- 顯示輸入訊息區塊 -->
+        <div class="row">
+            <div class="col-12">
+                <div class="display-4 text-bg-success fw-900 text-center my-3 py-3">報名資料確認</div>
+            </div>
+            <div class="col-12" id="showmsg">
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-4.0.0.js"></script>
+    <script>
+
+        let flag_username = false
+
+        $(function () {
+            // 即時監聽 #username
+            $("#username").on("input", function () {
+                // console.log("#username").val();
+                console.log($(this).val().length);
+                if ($(this).val().length > 1 && $(this).val().length < 9) {
+                    console.log("符合規定");
+
+                    $(this).removeClass("is-invalid")  //移除! 勾勾出現
+
+                    $(this).addClass("is-valid");
+
+                    flag_username = true
+
+                } else {
+                    console.log("不符合規定");
+
+                    $(this).removeClass("is-valid")  //移除勾勾  !出現
+
+                    $(this).addClass("is-invalid");
+
+                    flag_username = false
+
+                }
+            });
+            $("#email").on("input", function () {
+                console.log($(this).val().length)
+                if ($(this).val().length > 7 && $(this).val().length < 16 && $(this).val().includes("@")) {
+                    console.log("符合規定");
+                    $(this).removeClass("is-invalid")  //移除! 勾勾出現
+
+                    $(this).addClass("is-valid");
+
+                    flag_username = true
+
+
+                } else {
+                    console.log("不符合規定");
+
+                    $(this).removeClass("is-valid")  //移除勾勾  !出現
+
+                    $(this).addClass("is-invalid");
+
+                    flag_username = false
+                }
+            })
+            $("#pwd").on("input", function () {
+                console.log($(this).val().length)
+                if ($(this).val().length > 7 && $(this).val().length < 17) {
+                    console.log("符合規定");
+                    $(this).removeClass("is-invalid")  //移除! 勾勾出現
+
+                    $(this).addClass("is-valid");
+
+                    flag_username = true
+
+
+                } else {
+                    console.log("不符合規定");
+
+                    $(this).removeClass("is-valid")  //移除勾勾  !出現
+
+                    $(this).addClass("is-invalid");
+
+                    flag_username = false
+                }
+            })
+            $("#phone").on("input", function () {
+                console.log($(this).val().length)
+                if ($(this).val().length == 10 && $(this).val().startsWith("09")) {
+                    console.log("符合規定");
+                    $(this).removeClass("is-invalid")  //移除! 勾勾出現
+
+                    $(this).addClass("is-valid");
+
+                    flag_username = true
+
+
+                } else {
+                    console.log("不符合規定");
+
+                    $(this).removeClass("is-valid")  //移除勾勾  !出現
+
+                    $(this).addClass("is-invalid");
+
+                    flag_username = false
+                }
+            })
+            
+
+            // 輸入完成後離開欄位才觸發
+            // $("#username").on("change", function () {
+            //     console.log("change" + $(this).val());
+            // })
+
+            // 監聽#ok-btn確認送出
+            $("#ok-btn").on("click", function () {
+                if (flag_username == true) {
+                    console.log("符合規定")
+
+                    const strHTML = `<div class="h2">姓名:${$("#username").val()}</div> <div class="h2">Email:${$("#email").val()}</div> <div class="h2">密碼:${$("#pwd").val()}</div> <div class="h2">手機:${$("#phone").val()}</div>`
+
+                    $("#showmsg").html(strHTML)
+                } else {
+                    console.log("不符合規定")
+                    alert("資料不符合規定!")
+                }
+
+
+            });
+        });
+
+    </script>
+</body>
+
+</html>
