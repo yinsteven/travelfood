@@ -8,17 +8,974 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="myallcss.css">
+    <style>
+        :root {
+            /* 背景色（暗色調基底） */
+            --bg-main: #5e5e64;
+            /* 深邃科技黑藍，網頁主背景 */
+            --bg-surface: #121224;
+            /* 區塊背景（Card、Nav），與主背景做出層次 */
+            --bg-glow: rgba(10, 10, 18, 0.8);
+            /* 帶有模糊效果的半透明背景 */
 
+            /* 霓虹核心色（高飽和度、發光感） */
+            --neon-cyan: #00f3ff;
+            /* 科技青藍（主色：連結、強調、邊框） */
+            --neon-pink: #ff007f;
+            /* 霓虹桃紅（輔助色：按鈕、Hover、重要標籤） */
+            --neon-purple: #9d4edd;
+            /* 神秘暗紫（點綴色：漸層、陰影） */
+
+            /* 文字顏色 */
+            --text-main: #f8f9fa;
+            /* 主文字（接近純白，確保好閱讀） */
+            --text-muted: #94a3b8;
+            /* 次要文字（帶點藍灰，用於說明、時間） */
+            --text-neon: #00f3ff;
+            /* 霓虹文字（用於大標題或需要發光的文字） */
+
+            /* 霓虹發光效果（Box Shadow） */
+            --shadow-cyan: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.2);
+            --shadow-pink: 0 0 10px rgba(255, 0, 127, 0.5), 0 0 20px rgba(255, 0, 127, 0.2);
+
+            /* 全域過渡效果 */
+            --transition-fast: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-main);
+        }
+
+
+        /* 幻燈片圖片區域 */
+        .resume-slide {
+            height: 85vh;
+            min-height: 480px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        /* 圖片加上暗色遮罩，讓文字容易閱讀 */
+        .resume-slide::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg,
+                    rgba(18, 18, 36, 0.92) 0%,
+                    rgba(18, 18, 36, 0.65) 45%,
+                    rgba(18, 18, 36, 0.08) 100%);
+        }
+
+        /* 左下方文字區塊 */
+        .resume-caption {
+            left: 8%;
+            right: auto;
+            bottom: 10%;
+            width: min(620px, 76%);
+            text-align: left;
+            padding: 28px 32px;
+
+            background: rgba(18, 18, 36, 0.78);
+            border-left: 4px solid var(--neon-cyan);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.35);
+
+            box-shadow: var(--shadow-cyan);
+            backdrop-filter: blur(8px);
+
+            color: var(--text-main);
+        }
+
+        /* 小標籤 */
+        .resume-tag {
+            display: inline-block;
+            color: var(--neon-cyan);
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        /* 大標題 */
+        .resume-caption h2 {
+            color: var(--neon-cyan);
+            font-size: clamp(1.7rem, 3vw, 2.6rem);
+            font-weight: 900;
+            text-shadow: 0 0 12px rgba(0, 243, 255, 0.45);
+            margin-bottom: 10px;
+        }
+
+        /* 副標題 */
+        .resume-caption h4 {
+            color: var(--neon-pink);
+            font-size: clamp(1rem, 1.8vw, 1.25rem);
+            margin-bottom: 18px;
+        }
+
+        /* 條列文字 */
+        .resume-caption ul {
+            padding-left: 22px;
+            margin-bottom: 0;
+            line-height: 2;
+        }
+
+        .resume-caption li {
+            color: var(--text-main);
+            padding-left: 4px;
+        }
+
+        .resume-caption li::marker {
+            color: var(--neon-cyan);
+        }
+
+        /* 手機版調整 */
+        @media (max-width: 767.98px) {
+            .resume-slide {
+                height: 75vh;
+                min-height: 450px;
+            }
+
+            .resume-caption {
+                left: 6%;
+                right: auto;
+                bottom: 8%;
+                width: 84%;
+                padding: 20px;
+            }
+
+            .resume-caption ul {
+                line-height: 1.8;
+                font-size: 0.9rem;
+            }
+
+            .resume-caption h4 {
+                line-height: 1.5;
+            }
+        }
+
+        /* SECTION 04：賽博龐克個人介紹 */
+        .cyber-about {
+            background: #0b0b18;
+            color: #f8f9fa;
+            overflow: hidden;
+        }
+
+        /* 左側圖片 */
+        .cyber-about-img {
+            min-height: 520px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .cyber-about-img::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg,
+                    rgba(11, 11, 24, 0.05),
+                    rgba(11, 11, 24, 0.25),
+                    #0b0b18);
+        }
+
+        /* 右側內容 */
+        .cyber-about-content {
+            background:
+                radial-gradient(circle at 90% 10%,
+                    rgba(157, 78, 221, 0.16),
+                    transparent 35%),
+                #0b0b18;
+        }
+
+        /* 英文小標籤 */
+        .cyber-tag {
+            color: #00f3ff;
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        /* 主標題 */
+        .cyber-title {
+            color: #00f3ff;
+            font-size: clamp(2rem, 3.5vw, 3.5rem);
+            font-weight: 900;
+            text-shadow:
+                0 0 8px rgba(0, 243, 255, 0.6),
+                0 0 24px rgba(0, 243, 255, 0.25);
+            margin-bottom: 15px;
+        }
+
+        /* 副標題 */
+        .cyber-subtitle {
+            color: #ff007f;
+            font-size: clamp(0.85rem, 1.5vw, 1.2rem);
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 28px;
+        }
+
+        /* 介紹文字 */
+        .cyber-description {
+            color: #cbd5e1;
+            font-size: 1rem;
+            line-height: 2;
+            margin-bottom: 12px;
+        }
+
+        /* 數據卡片 */
+        .cyber-stat {
+            height: 100%;
+            padding: 22px 8px;
+            background: rgba(18, 18, 36, 0.9);
+            border: 1px solid rgba(0, 243, 255, 0.35);
+            border-bottom: 3px solid #00f3ff;
+            transition: all 0.3s ease;
+        }
+
+        /* 數字 */
+        .cyber-stat-number {
+            color: #00f3ff;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            font-weight: 900;
+            text-shadow: 0 0 12px rgba(0, 243, 255, 0.5);
+        }
+
+        /* 卡片標題 */
+        .cyber-stat h4 {
+            color: #ff007f;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        /* 卡片說明 */
+        .cyber-stat p {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            margin-bottom: 0;
+        }
+
+        /* 滑鼠移過卡片 */
+        .cyber-stat:hover {
+            transform: translateY(-6px);
+            border-color: #ff007f;
+            border-bottom-color: #ff007f;
+            box-shadow:
+                0 0 12px rgba(255, 0, 127, 0.35),
+                0 0 25px rgba(0, 243, 255, 0.12);
+        }
+
+        /* 底部系統狀態 */
+        .cyber-footer-text {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-top: 30px;
+        }
+
+        .cyber-footer-text span {
+            color: #00f3ff;
+            text-shadow: 0 0 8px #00f3ff;
+        }
+
+        /* 手機版 */
+        @media (max-width: 767.98px) {
+            .cyber-about-img {
+                min-height: 300px;
+            }
+
+            .cyber-about-img::after {
+                background: linear-gradient(0deg,
+                        #0b0b18 0%,
+                        transparent 60%);
+            }
+
+            .cyber-about-content {
+                padding: 30px 20px !important;
+            }
+
+            .cyber-tag {
+                letter-spacing: 2px;
+            }
+        }
+
+        /* section 05：賽博龐克工作信念 */
+        .cyber-beliefs {
+            background: #0b0b18;
+            color: #f8f9fa;
+        }
+
+        /* 區塊英文標籤 */
+        .cyber-section-tag {
+            color: #00f3ff;
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        /* 區塊標題 */
+        .cyber-section-title {
+            color: #00f3ff;
+            font-weight: 900;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        /* 標題下方說明 */
+        .cyber-section-desc {
+            color: #94a3b8;
+            margin-top: 15px;
+        }
+
+        /* 三張信念卡片 */
+        .belief-card {
+            height: 100%;
+            padding: 35px 24px;
+            background: #121224;
+            border: 1px solid rgba(0, 243, 255, 0.35);
+            border-bottom: 3px solid #00f3ff;
+            transition: all 0.3s ease;
+        }
+
+        /* 卡片圖示 */
+        .belief-card i {
+            color: #00f3ff;
+            text-shadow: 0 0 12px rgba(0, 243, 255, 0.6);
+        }
+
+        /* 卡片標題 */
+        .belief-card h3 {
+            color: #ff007f;
+            font-size: 1.35rem;
+            font-weight: bold;
+        }
+
+        /* 卡片內文 */
+        .belief-card p {
+            color: #cbd5e1;
+            line-height: 2;
+            text-align: left;
+            margin-bottom: 0;
+        }
+
+        /* 滑鼠移到卡片上 */
+        .belief-card:hover {
+            transform: translateY(-8px);
+            border-color: #ff007f;
+            border-bottom-color: #ff007f;
+            box-shadow:
+                0 0 12px rgba(255, 0, 127, 0.3),
+                0 0 25px rgba(0, 243, 255, 0.12);
+        }
+
+        /* 手機版調整 */
+        @media (max-width: 767.98px) {
+            .cyber-section-tag {
+                letter-spacing: 1px;
+                font-size: 0.75rem;
+            }
+
+            .belief-card {
+                padding: 28px 22px;
+            }
+        }
+
+        /* section 06：關於我 */
+        .cyber-about-me {
+            background: #0b0b18;
+            color: #f8f9fa;
+            overflow: hidden;
+        }
+
+        /* 左側圖片：保留原本 position 排版 */
+        .cyber-about-me-img {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* 右側文字區塊 */
+        .cyber-about-me-content {
+            padding: 55px 35px;
+            background:
+                radial-gradient(circle at 100% 0%,
+                    rgba(157, 78, 221, 0.12),
+                    transparent 40%);
+        }
+
+        /* 關於我主標題 */
+        .cyber-about-me-title {
+            color: #00f3ff;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+        }
+
+        /* 英文副標題 */
+        .cyber-about-me-en {
+            color: #ff007f;
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-left: 10px;
+            text-shadow: 0 0 8px rgba(255, 0, 127, 0.4);
+        }
+
+        /* 關於我的內文 */
+        .cyber-about-me-content p {
+            color: #cbd5e1;
+            font-size: 1rem;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        /* 了解更多按鈕 */
+        .cyber-about-me-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 24px;
+            color: #00f3ff;
+            background: transparent;
+            border: 1px solid #00f3ff;
+            border-radius: 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        /* 滑鼠移到按鈕上 */
+        .cyber-about-me-btn:hover {
+            color: #0b0b18;
+            background: #00f3ff;
+            box-shadow:
+                0 0 10px rgba(0, 243, 255, 0.6),
+                0 0 25px rgba(0, 243, 255, 0.3);
+        }
+
+
+        /* section 06：手機版 RWD */
+        @media (max-width: 767.98px) {
+
+            /* 圖片在手機版縮小，保留原本定位方式 */
+            .cyber-about-me-img {
+                height: 280px !important;
+                opacity: 0.35;
+            }
+
+            /* 讓文字區塊顯示在圖片前面 */
+            .cyber-about-me-content {
+                position: relative;
+                z-index: 2;
+                padding: 300px 22px 35px;
+                background: linear-gradient(to bottom,
+                        rgba(11, 11, 24, 0.1),
+                        #0b0b18 280px);
+            }
+
+            /* 標題 */
+            .cyber-about-me-title {
+                font-size: 2rem;
+            }
+
+            /* 英文副標題 */
+            .cyber-about-me-en {
+                display: block;
+                margin-left: 0;
+                margin-top: 8px;
+                font-size: 0.9rem;
+            }
+
+            /* 內文 */
+            .cyber-about-me-content p {
+                font-size: 0.95rem;
+                line-height: 1.9;
+            }
+        }
+        
+    </style>
 </head>
 
 <body>
 
     <!-- section 01 社群連結 -->
-    <section id="s01">
+    <section id="s01" style="background-color: #0b0b18; border-bottom: 1px solid rgba(0, 243, 255, 0.15);">
         <div class="container">
             <div class="row">
-                <div class="text-end">
-                    
+                <div class="text-end py-2">
+                    <a href="#" style="color: #00f3ff; text-shadow: 0 0 8px rgba(0, 243, 255, 0.4);"
+                        class="text-decoration-none me-3">
+                        <i class="fa-brands fa-twitter fa-2x"></i>
+                    </a>
+                    <a href="#" style="color: #ff007f; text-shadow: 0 0 8px rgba(255, 0, 127, 0.4);"
+                        class="text-decoration-none me-3">
+                        <i class="fa-brands fa-instagram fa-2x"></i>
+                    </a>
+                    <a href="#" style="color: #00f3ff; text-shadow: 0 0 8px rgba(0, 243, 255, 0.4);"
+                        class="text-decoration-none">
+                        <i class="fa-brands fa-facebook fa-2x"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section 02 選單 Navbar -->
+    <section id="s02"
+        style="background-color: #0b0b18; border-bottom: 1px solid rgba(0, 243, 255, 0.25); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0b0b18;">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"
+                        style="color: #00f3ff; text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);"><i
+                            class="fa-brands fa-docker"></i></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation"
+                        style="border-color: rgba(0, 243, 255, 0.5);">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#"
+                                    style="color: #00f3ff; text-shadow: 0 0 8px rgba(0, 243, 255, 0.4);"><i
+                                        class="fa-regular fa-house"></i>首頁</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="color: #f8f9fa;"><i class="fa-solid fa-flask"
+                                        style="color: #ff007f;"></i>工作經歷</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false" style="color: #f8f9fa;"><i class="fa-solid fa-microscope"
+                                        style="color: #00f3ff;"></i>
+                                    專長項目
+                                </a>
+                                <ul class="dropdown-menu"
+                                    style="background-color: #121224; border: 1px solid rgba(0, 243, 255, 0.35);">
+                                    <li><a class="dropdown-item" href="#" style="color: #f8f9fa;">Action</a></li>
+                                    <li><a class="dropdown-item" href="#" style="color: #f8f9fa;">Another action</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider" style="border-color: rgba(0, 243, 255, 0.2);">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" style="color: #f8f9fa;">Something else
+                                            here</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" aria-disabled="true"
+                                    style="color: #94a3b8 !important;">Disabled</a>
+                            </li>
+                        </ul>
+                        <div>
+                            <button class="btn btn-outline-warning" data-bs-toggle="modal"
+                                data-bs-target="#reigisterModal"
+                                style="color: #00f3ff; border-color: #00f3ff; box-shadow: 0 0 8px rgba(0, 243, 255, 0.3);"><i
+                                    class="fa-brands fa-docker"></i>註冊</button>
+                            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#loginModal"
+                                style="color: #ff007f; border-color: #ff007f; box-shadow: 0 0 8px rgba(255, 0, 127, 0.3);"><i
+                                    class="fa-brands fa-docker"></i>登入</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+    <!-- reigisterModal -->
+    <div class="modal fade" id="reigisterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        data-bs-backdrop="static">
+        <div class="modal-dialog  modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header text-bg-warning">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">會員註冊</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="row">
+                            <div class="col-6">
+                                <h1>會員守則</h1>
+                                <p>1.身份矩陣唯一性：每位公民僅限註冊一組終端識別碼，嚴禁非法盜用或轉讓他人身份。</p>
+                                <p>2. 數據隱私安全協定：請妥善保管你的存取金鑰（密碼）。因個人疏忽導致憑證外洩，本站不承擔任何數據遺失責任。</p>
+                                <p>3.矩陣言論淨化：嚴禁傳播惡意病毒碼、木馬或散佈攻擊性、侮辱性之超文本訊息，違者將永久斷開連結。</p>
+                                <p>4.智慧產權聲明：本站所有霓虹視覺特效、程式碼與數位資產皆受版權保護，未經授權禁止鏡像複製。</p>
+                                <p>5.終端服務變更：本站保有隨時優化系統架構與修訂本協定之權利，更新時將於主控台公告。</p>
+
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" id="switch01">
+                                </div>
+                                <div id="switch_msg" class="text-secondary mt-2">
+                                    已閱
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">帳號</label>
+                                    <input type="text" class="form-control" id="username" placeholder="哈囉你好嗎~">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="re-username" class="form-label">確認帳號</label>
+                                    <input type="text" class="form-control" id="re-username" placeholder="哈囉你好嗎~">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">密碼</label>
+                                    <input type="text" class="form-control" id="password">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" class="form-control form-control-lg" id="email">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="me-auto text-decoration-none" data-bs-toggle="modal"
+                        data-bs-target="#loginModal">已經有帳號，直接登入</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- loginModal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header text-bg-success">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">會員登入</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">帳號</label>
+                        <input type="text" class="form-control" id="username" placeholder="請輸入帳號~">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">密碼</label>
+                        <input type="text" class="form-control" id="password" placeholder="">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="me-auto text-decoration-none" data-bs-toggle="modal"
+                        data-bs-target="#reigisterModal">沒帳號?請註冊</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary">登入</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- section 03 幻燈片效果 carouse AI版本 -->
+    <section id="03">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+
+            <div class="carousel-inner">
+
+                <!-- 第一張：霓虹運動場 -->
+                <div class="carousel-item active resume-slide"
+                    style="background-image: url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1920&q=85');">
+
+                    <div class="carousel-caption resume-caption">
+                        <span class="resume-tag">01 / ABOUT ME</span>
+                        <h2>跨領域學習者</h2>
+                        <h4>從職能治療到網頁開發</h4>
+
+                        <ul>
+                            <li>具備職能治療相關工作背景</li>
+                            <li>喜歡觀察問題、分析需求與尋找解法</li>
+                            <li>持續學習前端網頁設計與程式開發</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 第二張： -->
+                <div class="carousel-item resume-slide" style="background-image: url(images/賽博圖片2.avif);">
+
+                    <div class="carousel-caption resume-caption">
+                        <span class="resume-tag">02 / MY JOURNEY</span>
+                        <h2>持續累積技術</h2>
+                        <h4>從基礎開始，逐步建立實作能力</h4>
+
+                        <ul>
+                            <li>HTML、CSS、Bootstrap 響應式排版</li>
+                            <li>JavaScript、jQuery 與 API 資料串接</li>
+                            <li>Python、PHP、Laravel 與 Git 版本控制</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 第三張：未來探索與成長 -->
+                <div class="carousel-item resume-slide" style="background-image: url(images/賽博圖片3.avif);">
+
+                    <div class="carousel-caption resume-caption">
+                        <span class="resume-tag">03 / MY STRENGTHS</span>
+                        <h2>解決問題，持續進步</h2>
+                        <h4>不只追求完成，也希望真正理解</h4>
+
+                        <ul>
+                            <li>願意面對錯誤，逐步除錯與修正</li>
+                            <li>重視邏輯、細節與使用者體驗</li>
+                            <li>保持好奇心，將學習轉化為實作</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 左右切換按鈕 -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
+        </div>
+    </section>
+
+    <!-- section 04 個人能力數據 -->
+    <section id="s04" class="cyber-about">
+        <div class="container-fluid">
+            <div class="row align-items-stretch">
+
+                <!-- 左側圖片 -->
+                <div class="col-md-5 bg-img cyber-about-img" style="background-image:url(images/賽博圖片7.avif)">
+                </div>
+
+                <!-- 右側文字 -->
+                <div class="col-md-7 text-center py-5 cyber-about-content">
+
+                    <div class="cyber-tag">SYSTEM PROFILE / 004</div>
+
+                    <h1 class="cyber-title">
+                        不被定義，持續進化。
+                    </h1>
+
+                    <h2 class="cyber-subtitle">
+                        FROM THERAPY TO TECHNOLOGY
+                    </h2>
+
+                    <p class="cyber-description">
+                        從職能治療出發，以觀察力理解需求，
+                        用邏輯拆解問題，透過程式打造自己的可能性。
+                    </p>
+
+                    <p class="cyber-description">
+                        每一次除錯都是突破，每一個作品都是成長。
+                        不只學會寫程式，更要理解程式背後的思考。
+                    </p>
+
+                    <!-- 數據卡片 -->
+                    <div class="row mt-5 g-3">
+
+                        <div class="col-6 col-lg-3">
+                            <div class="cyber-stat">
+                                <div class="cyber-stat-number counter">4+</div>
+                                <h4>年資歷</h4>
+                                <p>職能治療背景</p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-lg-3">
+                            <div class="cyber-stat">
+                                <div class="cyber-stat-number counter">6+</div>
+                                <h4>技術領域</h4>
+                                <p>前後端持續探索</p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-lg-3">
+                            <div class="cyber-stat">
+                                <div class="cyber-stat-number counter">3</div>
+                                <h4>開發方向</h4>
+                                <p>網頁、資料、後端</p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-lg-3">
+                            <div class="cyber-stat">
+                                <div class="cyber-stat-number counter">10000+</div>
+                                <h4>成長可能</h4>
+                                <p>持續學習與突破</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="cyber-footer-text">
+                        <span>●</span> LEARNING MODE : ACTIVE
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 05 個人特質(風格) -->
+    <!-- <section id="s05">
+        <div class="container">
+            <h2 class="text-center my-3">我的工作信念</h2>
+            <div class="row">
+                <div class="col-md-4 text-center shadow-sm">
+                    <i class="fa-solid fa-crosshairs fa-4x"></i>
+                    <h3 class="my-4">主動解決問題</h3>
+                    <p>面對問題先釐清拆解......</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="fa-regular fa-comments"></i>
+                    <h3 class="my-4">善用溝通能力</h3>
+                    <p>與他人溝通，達成一致目標......</p>
+                </div>
+                <div class="col-md-4 text-center shadow-sm">
+                    <i class="fa-solid fa-crosshairs fa-4x"></i>
+                    <h3 class="my-4">適時求助</h3>
+                    <p>遇到困難時......</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section> -->
+
+
+    <!-- section 05 個人特質(風格) AI生成 -->
+    <section id="s05" class="cyber-beliefs">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <p class="cyber-section-tag">MY WORKING PRINCIPLES / 005</p>
+                <h2 class="cyber-section-title">我的工作信念</h2>
+                <p class="cyber-section-desc">保持思考、有效溝通，持續突破自我。</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="belief-card text-center">
+                        <i class="fa-solid fa-crosshairs fa-3x"></i>
+                        <h3 class="my-4">主動解決問題</h3>
+                        <p>
+                            面對問題時，先釐清原因、拆解步驟，
+                            再逐步尋找解決方法。
+                            遇到程式錯誤時，也會透過測試與除錯，
+                            累積經驗並持續改善。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="belief-card text-center">
+                        <i class="fa-regular fa-comments fa-3x"></i>
+                        <h3 class="my-4">善用溝通能力</h3>
+                        <p>
+                            主動傾聽不同的想法，確認彼此的需求，
+                            讓資訊傳達更清楚。
+                            我相信良好的溝通與團隊合作，
+                            能讓問題更快找到解決方向。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="belief-card text-center">
+                        <i class="fa-solid fa-lightbulb fa-3x"></i>
+                        <h3 class="my-4">適時求助與學習</h3>
+                        <p>
+                            遇到不熟悉的問題時，先嘗試分析與查找資料，
+                            必要時主動請教他人。
+                            不害怕承認不足，並將每次回饋
+                            轉化為下一次進步的動力。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 06 關於我 -->
+    <!-- <section id="s06" style="position: relative;">
+        <div class="row">
+            <div class="col-md-5 bg-img" style="background-image: url(images/賽博圖片5.avif); height: 500px; position: absolute;top: 0; bottom: 0;"></div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-md-7">
+                    <div class="h2">關於我 <span class="text-success">ABOUT ME</span></div>
+                    <p>我是一位全端工程師....</p>
+                    <p>我相信最好的作品不只是....</p>
+                    <p>目前正在累積xxx作品，增加xxx技能</p>
+                    <a href="#" class="btn btn-warning">了解更多</a>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    
+    
+    <!-- section 06 關於我 AI生成-->
+    <section id="s06" class="cyber-about-me" style="position: relative;">
+        <div class="row">
+            <div class="col-md-5 bg-img cyber-about-me-img"
+                style="background-image: url(images/賽博圖片5.avif);  position: absolute;top: 0; bottom: 0;">
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-end py-3">
+                <div class="col-md-7 cyber-about-me-content">
+
+                    <div class="h2 cyber-about-me-title">
+                        關於我
+                        <span class="cyber-about-me-en">ABOUT ME</span>
+                    </div>
+
+                    <p>
+                        我是一位從職能治療跨領域投入網頁開發的學習者。
+                        過去的工作經驗培養了我的觀察力、溝通能力與問題分析能力，
+                        也讓我學會從不同角度理解需求，並尋找合適的解決方法。
+                    </p>
+
+                    <p>
+                        我相信，好的作品不只是畫面美觀，
+                        更需要兼顧使用者體驗、操作邏輯與實際需求。
+                        在學習程式的過程中，我持續練習版面設計、功能實作與錯誤排除，
+                        讓每一次修改都成為累積經驗的機會。
+                    </p>
+
+                    <p>
+                        目前持續學習 HTML、CSS、Bootstrap、JavaScript 與 jQuery，
+                        並接觸 Python、PHP、Laravel 及資料庫相關技術，
+                        透過課堂練習與個人作品，逐步建立前後端開發的基礎能力。
+                    </p>
+
+                    <p>
+                        對我而言，學習不是一次就把所有事情做到完美，
+                        而是在遇到問題時願意嘗試、查找資料、請教他人，
+                        並持續修正與進步。
+                    </p>
+
+                    <a href="index.html" class="btn cyber-about-me-btn">
+                        探索我的學習歷程
+                        <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -26,8 +983,30 @@
 
 
 
-
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+
+    <script>
+        const counterUp = window.counterUp.default
+
+        const callback = entries => {
+            entries.forEach(entry => {
+                const el = entry.target
+                if (entry.isIntersecting && !el.classList.contains('is-visible')) {
+                    counterUp(el, {
+                        duration: 2000,
+                        delay: 16,
+                    })
+                    el.classList.add('is-visible')
+                }
+            })
+        }
+
+        const IO = new IntersectionObserver(callback, { threshold: 1 })
+
+        const counters = document.querySelectorAll('.counter')
+        counters.forEach(el => IO.observe(el))
+    </script>
 
 </body>
 
