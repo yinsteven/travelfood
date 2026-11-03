@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>動畫練習</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="myallcss.css">
+    <style>
+        .box01 {
+            height: 180px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-4">
+                <div class="box01 bg-danger wow animate__zoomInUp"data-wow-duration="2s" data-wow-delay="s"data-wow-iteration="1"></div>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-12 bg-primary vh-100"></div>
+        </div>
+        <div class="row">
+            <div class="col-4 mt-3">
+                <div class="box01 bg-warning wow animate__jackInTheBox" data-wow-duration="2s" data-wow-delay="s"data-wow-iteration="1"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 mt-3">
+                <div class="box01 bg-dark wow animate__backInRight" data-wow-duration="3s" data-wow-delay="s"data-wow-iteration="1"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 mt-3">
+                <div class="box01 bg-success wow animate__bounceInLeft" data-wow-duration="4s" data-wow-delay="s"data-wow-iteration="1"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 mt-3">
+                <div class="display-1 fw-900  wow animate__lightSpeedInLeft" data-wow-duration="5s" data-wow-delay="s"data-wow-iteration="1">動畫測試</div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-4 mt-3 ">
+                <i class="fa-solid fa-heart-pulse text-danger wow animate__heartBeat" style="font-size: 200px;" data-wow-duration="1.9s" data-wow-delay="1s"data-wow-iteration="infinite"></i>              
+            </div>
+        </div>
+        
+    </div>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+</body>
+
+</html>

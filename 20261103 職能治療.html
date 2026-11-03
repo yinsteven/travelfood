@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職能治療形象網站</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="myallcss.css">
+    <style>
+        /* section 01 社群連結 */
+        #s01 {
+            background-color: #EAF5EF;
+        }
+
+        /* 了解更多文字 */
+        #s01 span {
+            color: #3D6B56;
+            font-size: 2rem;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+        /* 箭頭符號 */
+        #s01 .fa-arrow-right-from-bracket {
+            color: #6A9C7B;
+            font-size: 2rem;
+            margin-right: 12px;
+            vertical-align: middle;
+        }
+
+        /* Twitter 官方品牌藍（舊版 Twitter 鳥圖示） */
+        #s01 .social-twitter {
+            color: #1DA1F2;
+        }
+
+        /* Instagram 品牌漸層色 */
+        #s01 .social-instagram {
+            display: inline-block;
+            background: linear-gradient(45deg,
+                    #FEDA75,
+                    #FA7E1E,
+                    #D62976,
+                    #962FBF,
+                    #4F5BD5);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Facebook 品牌藍 */
+        #s01 .social-facebook {
+            color: #0866FF;
+        }
+
+        /* 社群 Icon 滑鼠效果 */
+        #s01 a {
+            transition: 0.3s;
+        }
+
+        #s01 a:hover {
+            opacity: 0.7;
+            transform: translateY(-3px);
+        }
+
+        /* 統一文字與箭頭垂直對齊 */
+        #s01 .fa-arrow-right-from-bracket {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- section 01 社群連結 -->
+    <section id="s01">
+        <div class="container">
+            <div class="row">
+                <div class="text-end py-2">
+                    <span class="me-3">了解更多</span>
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+
+                    <a href="#" class="text-decoration-none me-3 social-twitter">
+                        <i class="fa-brands fa-twitter fa-2x pt-2"></i>
+                    </a>
+                    <a href="#" class="text-decoration-none me-3 social-instagram">
+                        <i class="fa-brands fa-instagram fa-2x pt-2"></i>
+                    </a>
+                    <a href="#" class="text-decoration-none social-facebook">
+                        <i class="fa-brands fa-facebook fa-2x ty-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+</body>
+
+</html>
