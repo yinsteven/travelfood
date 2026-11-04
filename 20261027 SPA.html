@@ -7,7 +7,7 @@
     <title>SPA 個人履歷排版練習</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="myallcss.css">
     <style>
         :root {
@@ -1084,6 +1084,118 @@
             </div>
         </div>
     </section>
+
+    <!-- section 02 選單 Navbar -->
+    <!-- <section id="s02">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">認識職能治療</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">簡介</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">發展史</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    領域
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">成人</a></li>
+                                    <li><a class="dropdown-item" href="#">兒童</a></li>
+                                    <li><a class="dropdown-item" href="#">精神</a></li>
+                                </ul>
+
+                            </li>
+
+                        </ul>
+                        <div>
+                            <button class="btn btn-outline-warning" data-bs-toggle="modal"
+                                data-bs-target="#reigisterModal"
+                                style="color: #00f3ff; border-color: #00f3ff; box-shadow: 0 0 8px rgba(0, 243, 255, 0.3);"><i
+                                    class="fa-brands fa-docker"></i>註冊</button>
+                            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#loginModal"
+                                style="color: #ff007f; border-color: #ff007f; box-shadow: 0 0 8px rgba(255, 0, 127, 0.3);"><i
+                                    class="fa-brands fa-docker"></i>登入</button>
+                        </div>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section> -->
+    <!-- reigisterModal -->
+    <!-- <div class="modal fade" id="reigisterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        data-bs-backdrop="static">
+        <div class="modal-dialog  modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header text-bg-info">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">會員註冊</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="row">
+                            <div class="col-6">
+                                <h1>會員守則</h1>
+                                <p>1.身份矩陣唯一性：每位公民僅限註冊一組終端識別碼，嚴禁非法盜用或轉讓他人身份。</p>
+                                <p>2. 數據隱私安全協定：請妥善保管你的存取金鑰（密碼）。因個人疏忽導致憑證外洩，本站不承擔任何數據遺失責任。</p>
+                                <p>3.矩陣言論淨化：嚴禁傳播惡意病毒碼、木馬或散佈攻擊性、侮辱性之超文本訊息，違者將永久斷開連結。</p>
+                                <p>4.智慧產權聲明：本站所有霓虹視覺特效、程式碼與數位資產皆受版權保護，未經授權禁止鏡像複製。</p>
+                                <p>5.終端服務變更：本站保有隨時優化系統架構與修訂本協定之權利，更新時將於主控台公告。</p>
+
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" id="switch01">
+                                </div>
+                                <div id="switch_msg" class="text-secondary mt-2">
+                                    已閱
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">帳號</label>
+                                    <input type="text" class="form-control" id="username" placeholder="哈囉你好嗎~">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="re-username" class="form-label">確認帳號</label>
+                                    <input type="text" class="form-control" id="re-username" placeholder="哈囉你好嗎~">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">密碼</label>
+                                    <input type="text" class="form-control" id="password">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" class="form-control form-control-lg" id="email">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="me-auto text-decoration-none" data-bs-toggle="modal"
+                        data-bs-target="#loginModal">已經有帳號，直接登入</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary">確認</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- loginModal -->
+    <!-- <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+
+
+
     <!-- section 02 選單 Navbar -->
     <section id="s02"
         style="background-color: #0b0b18; border-bottom: 1px solid rgba(0, 243, 255, 0.25); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
@@ -1253,7 +1365,8 @@
                 <div class="carousel-item active resume-slide"
                     style="background-image: url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1920&q=85');">
 
-                    <div class="carousel-caption resume-caption wow animate__lightSpeedInLeft"data-wow-duration="s" data-wow-delay="s"data-wow-iteration="1">
+                    <div class="carousel-caption resume-caption wow animate__lightSpeedInLeft" data-wow-duration="s"
+                        data-wow-delay="s" data-wow-iteration="1">
                         <span class="resume-tag">01 / ABOUT ME</span>
                         <h2>跨領域學習者</h2>
                         <h4>從職能治療到網頁開發</h4>
@@ -1269,7 +1382,8 @@
                 <!-- 第二張： -->
                 <div class="carousel-item resume-slide" style="background-image: url(images/賽博圖片2.avif);">
 
-                    <div class="carousel-caption resume-caption wow animate__lightSpeedInLeft"data-wow-duration="2s" data-wow-delay="s"data-wow-iteration="1">
+                    <div class="carousel-caption resume-caption wow animate__lightSpeedInLeft" data-wow-duration="2s"
+                        data-wow-delay="s" data-wow-iteration="1">
                         <span class="resume-tag">02 / MY JOURNEY</span>
                         <h2>持續累積技術</h2>
                         <h4>從基礎開始，逐步建立實作能力</h4>
@@ -1285,7 +1399,8 @@
                 <!-- 第三張：未來探索與成長 -->
                 <div class="carousel-item resume-slide" style="background-image: url(images/賽博圖片3.avif);">
 
-                    <div class="carousel-caption resume-caption wow animate__lightSpeedInLeft"data-wow-duration="2s" data-wow-delay="s"data-wow-iteration="1">
+                    <div class="carousel-caption resume-caption wow animate__lightSpeedInLeft" data-wow-duration="2s"
+                        data-wow-delay="s" data-wow-iteration="1">
                         <span class="resume-tag">03 / MY STRENGTHS</span>
                         <h2>解決問題，持續進步</h2>
                         <h4>不只追求完成，也希望真正理解</h4>
@@ -1330,7 +1445,8 @@
 
                     <div class="cyber-tag">SYSTEM PROFILE / 004</div>
 
-                    <h1 class="cyber-title wow animate__flipInY" data-wow-duration="5s" data-wow-delay="s"data-wow-iteration="1">
+                    <h1 class="cyber-title wow animate__flipInY" data-wow-duration="5s" data-wow-delay="s"
+                        data-wow-iteration="1">
                         不被定義，持續進化
                     </h1>
 
@@ -1947,7 +2063,7 @@
         const counters = document.querySelectorAll('.counter')
         counters.forEach(el => IO.observe(el))
     </script>
-     <script src="js/wow.min.js"></script>
+    <script src="js/wow.min.js"></script>
     <script>
         new WOW().init();
     </script>
