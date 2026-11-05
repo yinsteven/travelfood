@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職能治療形象網站</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="myallcss.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #EAF5EF;
+            --bg-soft: #F5FAF7;
+            --bg-white: #FFFFFF;
+            --green-deep: #4F8065;
+            --green-sage: #6A9C7B;
+            --green-light: #D5E9DC;
+            --green-pale: #EAF5EF;
+            --green-dark-text: #3D6B56;
+            --text-main: #405449;
+            --text-muted: #718579;
+            --border-green: #C9DFD0;
+            --shadow-soft: 0 10px 28px rgba(63, 107, 85, 0.10);
+            --shadow-hover: 0 14px 32px rgba(63, 107, 85, 0.16);
+            --radius-card: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-family: "Noto Sans TC", sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        section {
+            position: relative;
+        }
+
+        section .container {
+            position: relative;
+        }
+
+        /* 共用標題 */
+        .section-title,
+        .timeline-title,
+        .s10-title,
+        .s11-title,
+        .s12-title {
+            color: var(--green-dark-text);
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .h1,
+        .h2,
+        .h3 {
+            color: var(--green-dark-text);
+            font-weight: 700;
+        }
+
+        p {
+            color: var(--text-main);
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 0.55rem 1.25rem;
+            font-weight: 600;
+            transition: 0.25s ease;
+        }
+
+        .btn-success {
+            background-color: var(--green-deep);
+            border-color: var(--green-deep);
+        }
+
+        .btn-success:hover {
+            background-color: var(--green-dark-text);
+            border-color: var(--green-dark-text);
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            color: #fff;
+            background: var(--green-sage);
+            border-color: var(--green-sage);
+        }
+
+        .btn-warning:hover {
+            color: #fff;
+            background: var(--green-deep);
+            border-color: var(--green-deep);
+        }
+
+        .btn-outline-success {
+            color: var(--green-deep);
+            border-color: var(--green-sage);
+        }
+
+        .btn-outline-success:hover {
+            background: var(--green-deep);
+            border-color: var(--green-deep);
+        }
+
+        /* section 01 社群連結 */
+        #s01 {
+            background-color: #EAF5EF;
+        }
+
+        /* 外層容器 */
+        #s01 .social-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* 了解更多 + 箭頭 */
+        #s01 .more-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #3D6B56;
+            font-size: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* 了解更多 Hover */
+        #s01 .more-info:hover {
+            color: #6A9C7B;
+        }
+
+        /* 箭頭 */
+        #s01 .more-info i {
+            color: #6A9C7B;
+            transition: 0.3s;
+        }
+
+        /* Hover 箭頭移動 */
+        #s01 .more-info:hover i {
+            transform: translateX(4px);
+            color: #3D6B56;
+        }
+
+        /* 社群 Icon 初始隱藏 */
+        #s01 .social-icons {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(20px);
+            transition: 0.4s ease;
+        }
+
+        /* 滑鼠移到了解更多或 Icon 區域時顯示 */
+        #s01 .social-wrapper:hover .social-icons {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        /* Twitter 品牌藍 */
+        #s01 .social-twitter {
+            color: #1DA1F2;
+        }
+
+        /* Instagram 品牌漸層 */
+        #s01 .social-instagram {
+            display: inline-block;
+            background: linear-gradient(45deg,
+                    #FEDA75,
+                    #FA7E1E,
+                    #D62976,
+                    #962FBF,
+                    #4F5BD5);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Facebook 品牌藍 */
+        #s01 .social-facebook {
+            color: #0866FF;
+        }
+
+        /* 社群 Icon Hover */
+        #s01 .social-icons a {
+            transition: 0.3s;
+        }
+
+        #s01 .social-icons a:hover {
+            opacity: 0.7;
+            transform: translateY(-3px);
+        }
+
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@600;700;800;900&display=swap');
+
+        /* =========================
+   Section 02 Navbar
+========================= */
+
+        #s02 {
+            background-color: #EAF5EF;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        /* 品牌文字設計 */
+        #s02 .navbar-brand {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #3D6B56;
+            text-shadow: 1px 2px 3px rgba(61, 107, 86, 0.15);
+            transition: 0.3s;
+            cursor: default;
+        }
+
+        #s02 .navbar-brand:hover {
+            color: #6A9C7B;
+            letter-spacing: 5px;
+        }
+
+        /* Navbar 選單 */
+        #s02 .nav-link {
+            color: #3D6B56;
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 10px 16px;
+            transition: 0.3s;
+        }
+
+        #s02 .nav-link:hover,
+        #s02 .nav-link.active {
+            color: #6A9C7B;
+        }
+
+        /* 選單底線動畫 */
+        #s02 .nav-item {
+            position: relative;
+        }
+
+        #s02 .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 15px;
+            right: 15px;
+            bottom: 3px;
+            height: 2px;
+            background-color: #6A9C7B;
+            transform: scaleX(0);
+            transition: 0.3s;
+        }
+
+        #s02 .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Dropdown 下拉選單 */
+        #s02 .dropdown-menu {
+            border: 1px solid #D2E5D9;
+            border-radius: 10px;
+            background-color: #FFFFFF;
+            box-shadow: 0 5px 18px rgba(61, 107, 86, 0.12);
+            padding: 8px;
+            opacity: 0;
+            visibility: hidden;
+            display: block;
+            transform: translateY(-12px);
+            transition: 0.3s ease;
+        }
+
+        /* 滑鼠移入領域時滑出選單 */
+        #s02 .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Dropdown 選項 */
+        #s02 .dropdown-item {
+            color: #3D6B56;
+            border-radius: 6px;
+            padding: 9px 16px;
+            transition: 0.25s;
+        }
+
+        #s02 .dropdown-item:hover {
+            color: #FFFFFF;
+            background-color: #6A9C7B;
+            padding-left: 22px;
+        }
+
+        /* 讓 Section 02 的導覽列顯示在 Section 03 上方 */
+        #s02 {
+            position: relative;
+            z-index: 1000;
+        }
+
+        /* 下拉選單本身的層級 */
+        #s02 .dropdown-menu {
+            z-index: 1001;
+        }
+
+        /* 註冊按鈕 */
+        #s02 .btn-register {
+            color: #4F8065;
+            border: 1px solid #6A9C7B;
+            background-color: transparent;
+            margin-right: 6px;
+            transition: 0.3s;
+        }
+
+        #s02 .btn-register:hover {
+            color: #FFFFFF;
+            background-color: #6A9C7B;
+            box-shadow: 0 4px 12px rgba(106, 156, 123, 0.3);
+        }
+
+        /* 登入按鈕 */
+        #s02 .btn-login {
+            color: #FFFFFF;
+            border: 1px solid #4F8065;
+            background-color: #4F8065;
+            transition: 0.3s;
+        }
+
+        #s02 .btn-login:hover {
+            color: #FFFFFF;
+            background-color: #3D6B56;
+            box-shadow: 0 4px 12px rgba(61, 107, 86, 0.3);
+        }
+
+        /* Navbar 手機版按鈕 */
+        #s02 .navbar-toggler {
+            border-color: #6A9C7B;
+        }
+
+        #s02 .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.2rem rgba(106, 156, 123, 0.2);
+        }
+
+
+        /* =========================
+   Register / Login Modal
+========================= */
+
+        .modal-content {
+            font-family: 'Noto Sans TC', sans-serif;
+            border: 1px solid #D2E5D9;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(61, 107, 86, 0.2);
+        }
+
+        /* 註冊標題 */
+        .register-header {
+            color: #FFFFFF;
+            background: linear-gradient(135deg, #6A9C7B, #4F8065);
+            border-bottom: none;
+        }
+
+        /* 登入標題 */
+        .login-header {
+            color: #FFFFFF;
+            background: linear-gradient(135deg, #4F8065, #3D6B56);
+            border-bottom: none;
+        }
+
+        /* Modal 標題 */
+        .modal-header .modal-title {
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        /* Modal 內容 */
+        .modal-body {
+            color: #3D6B56;
+            background-color: #F8FCF9;
+            padding: 24px;
+        }
+
+        /* 會員守則標題 */
+        .modal-body h1 {
+            color: #3D6B56;
+            font-size: 1.4rem;
+            font-weight: 800;
+            border-left: 4px solid #6A9C7B;
+            padding-left: 10px;
+            margin-bottom: 18px;
+        }
+
+        /* 會員守則文字 */
+        .modal-body p {
+            color: #527461;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        /* 表單標籤 */
+        .modal-body .form-label {
+            color: #3D6B56;
+            font-weight: 600;
+        }
+
+        /* 輸入框 */
+        .modal-body .form-control {
+            border: 1px solid #C9DFD0;
+            border-radius: 8px;
+            background-color: #FFFFFF;
+            transition: 0.3s;
+        }
+
+        .modal-body .form-control:focus {
+            border-color: #6A9C7B;
+            box-shadow: 0 0 0 0.2rem rgba(106, 156, 123, 0.2);
+        }
+
+        /* 開關 */
+        .modal-body .form-check-input:checked {
+            background-color: #4F8065;
+            border-color: #4F8065;
+        }
+
+        /* Modal Footer */
+        .modal-footer {
+            background-color: #EAF5EF;
+            border-top: 1px solid #D2E5D9;
+        }
+
+        /* Modal Footer 連結 */
+        .modal-footer a {
+            color: #4F8065;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .modal-footer a:hover {
+            color: #6A9C7B;
+        }
+
+        /* 確認按鈕 */
+        .btn-modal-confirm {
+            color: #FFFFFF;
+            background-color: #4F8065;
+            border: 1px solid #4F8065;
+            transition: 0.3s;
+        }
+
+        .btn-modal-confirm:hover {
+            color: #FFFFFF;
+            background-color: #3D6B56;
+            box-shadow: 0 4px 10px rgba(61, 107, 86, 0.2);
+        }
+
+        /* Modal 取消按鈕 */
+        .modal-footer .btn-secondary {
+            color: #527461;
+            background-color: #FFFFFF;
+            border: 1px solid #C9DFD0;
+        }
+
+        .modal-footer .btn-secondary:hover {
+            color: #3D6B56;
+            background-color: #DCEDE2;
+        }
+
+        /* section 03 Hero Banner */
+        #s03 .carousel-item img {
+            height: 450px;
+            object-fit: cover;
+        }
+
+        /* Section 03｜首頁輪播 */
+        #s03 .carousel-item img {
+            height: calc(100vh - 120px);
+            min-height: 420px;
+            object-fit: cover;
+            filter: saturate(0.82);
+        }
+
+        #s03 .carousel-item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(31, 59, 43, 0.52), rgba(31, 59, 43, 0.04) 65%);
+            pointer-events: none;
+        }
+
+        #s03 .carousel-caption {
+            z-index: 2;
+            bottom: 9%;
+        }
+
+        #s03 .carousel-caption>div {
+            max-width: 900px;
+            margin: auto;
+            background: rgba(36, 67, 49, 0.55) !important;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        #s03 .carousel-caption h5 {
+            color: white;
+            font-size: clamp(1.25rem, 2.2vw, 2rem);
+            font-weight: 800;
+        }
+
+        #s03 .carousel-caption p {
+            color: #F3FBF5;
+            margin-bottom: 0;
+        }
+
+        /* Section 04｜職能治療介紹 */
+        #s04 {
+            background: var(--bg-soft);
+            padding: 0;
+        }
+
+        #s04 .ot-intro-img {
+            min-height: 560px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 0 28px 28px 0;
+        }
+
+        #s04 .ot-intro-content {
+            padding-left: clamp(24px, 5vw, 72px) !important;
+            padding-right: clamp(24px, 5vw, 72px) !important;
+        }
+
+        #s04 .ot-intro-title {
+            color: var(--green-dark-text);
+            font-size: clamp(2rem, 3.2vw, 3rem);
+            font-weight: 800;
+        }
+
+        #s04 .ot-intro-description {
+            max-width: 760px;
+            margin-inline: auto;
+        }
+
+        #s04 .ot-intro-description p {
+            font-size: 1.08rem;
+            font-weight: 500;
+        }
+
+        #s04 .ot-intro-description li {
+            margin: 10px 0;
+            padding-left: 4px;
+        }
+
+        #s04 .ot-intro-description li::marker {
+            color: var(--green-sage);
+        }
+
+        #s04 .ot-stat {
+            height: 100%;
+            padding: 18px 12px;
+            background: white;
+            border: 1px solid var(--border-green);
+            border-radius: 16px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        #s04 .ot-stat-number {
+            color: var(--green-deep);
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        #s04 .ot-stat h4 {
+            margin-top: 8px;
+            font-size: 1rem;
+        }
+
+        #s04 .ot-stat p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        /* Section 05｜台灣職能治療發展史 Timeline */
+        #s05 {
+            padding: 72px 0;
+            background: var(--bg-main);
+        }
+
+        #s05 .timeline-title {
+            margin-bottom: 55px !important;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+        }
+
+        #s05 .timeline-section {
+            position: relative;
+        }
+
+        #s05 .timeline-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            transform: translateX(-50%);
+            border-radius: 10px;
+            background: linear-gradient(to bottom, var(--green-light), var(--green-sage), var(--green-deep), var(--green-light));
+        }
+
+        #s05 .timeline-section-pointer {
+            position: relative;
+            margin-bottom: 55px;
+        }
+
+        #s05 .timeline-section-pointer:last-child {
+            margin-bottom: 0;
+        }
+
+        #s05 .timeline-section-pointer::before {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            width: 28px;
+            height: 28px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 6px solid var(--bg-main);
+            background: var(--green-deep);
+            box-shadow: 0 0 0 3px var(--green-sage);
+        }
+
+        #s05 .imgbox {
+            position: relative;
+            min-height: 300px;
+            background-size: cover;
+            background-position: center;
+            border: 7px solid white;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+        }
+
+        #s05 .imgbox::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(36, 67, 49, 0.48), transparent 60%);
+        }
+
+        #s05 .rollerbox-r,
+        #s05 .rollerbox-l {
+            position: absolute;
+            z-index: 2;
+            bottom: 18px;
+            left: 18px;
+            right: 18px;
+        }
+
+        #s05 .rollerbox-r button,
+        #s05 .rollerbox-l button {
+            max-width: 100%;
+            white-space: normal;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        #s05 .timeline-content {
+            padding: 28px;
+            background: white;
+            border: 1px solid var(--border-green);
+            border-left: 5px solid var(--green-sage);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-soft);
+        }
+
+        #s05 .timeline-content .h2 {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+            border-bottom: 1px solid var(--green-light);
+        }
+
+        #s05 .timeline-content p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* Section 06–09｜四大職能領域 */
+        #s06,
+        #s07,
+        #s08,
+        #s09 {
+            min-height: 500px;
+            padding: 70px 0;
+            background: var(--bg-soft);
+            overflow: hidden;
+        }
+
+        #s06 .bg-img,
+        #s07 .bg-img,
+        #s08 .bg-img,
+        #s09 .bg-img {
+            min-height: 500px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 0 26px 26px 0;
+        }
+
+        #s07 .bg-img,
+        #s09 .bg-img {
+            border-radius: 26px 0 0 26px;
+        }
+
+        #s06 .container,
+        #s07 .container,
+        #s08 .container,
+        #s09 .container {
+            z-index: 1;
+        }
+
+        #s06 .container .col-md-7,
+        #s08 .container .col-md-7 {
+            padding: 35px clamp(24px, 4vw, 60px);
+            background: rgba(245, 250, 247, 0.94);
+            border-radius: 24px;
+        }
+
+        #s07 .container .col-md-7,
+        #s09 .container .col-md-7 {
+            padding: 35px clamp(24px, 4vw, 60px);
+            background: rgba(245, 250, 247, 0.94);
+            border-radius: 24px;
+        }
+
+        #s06 .h2,
+        #s07 .h2,
+        #s08 .h2,
+        #s09 .h2 {
+            margin-bottom: 24px;
+            font-weight: 800;
+            line-height: 1.4;
+        }
+
+        #s06 p,
+        #s07 p,
+        #s08 p,
+        #s09 p {
+            margin-bottom: 18px;
+            font-size: 1.02rem;
+            line-height: 1.9;
+        }
+
+        #s06 strong,
+        #s07 strong,
+        #s08 strong,
+        #s09 strong {
+            color: var(--green-deep);
+        }
+
+        /* Section 10｜其他應用領域 */
+        #s10 {
+            padding: 55px 0;
+            background: var(--bg-main);
+        }
+
+        #s10 .s10-title {
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+        }
+
+        #s10 .s10-subtitle {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: var(--text-muted);
+        }
+
+        #s10 .s10-card {
+            width: 100%;
+            min-height: 210px;
+            padding: 28px;
+            gap: 10px;
+            background: white;
+            border: 1px solid var(--border-green);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        #s10 .s10-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        #s10 .s10-icon {
+            flex: 0 0 62px;
+            color: var(--green-sage);
+            font-size: 2.7rem;
+        }
+
+        #s10 .s10-card-title {
+            margin-bottom: 10px;
+            font-size: 1.35rem;
+            font-weight: 800;
+        }
+
+        #s10 .s10-card p {
+            line-height: 1.7;
+        }
+
+        /* Section 11｜核心目標 */
+        #s11 {
+            padding: 70px 0;
+            background: var(--bg-soft);
+        }
+
+        #s11 .s11-title {
+            margin-bottom: 38px !important;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+        }
+
+        #s11 .s11-card {
+            height: 100%;
+            padding: 38px 28px;
+            background: white;
+            border: 1px solid var(--border-green);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-soft);
+        }
+
+        #s11 .s11-icon {
+            color: var(--green-sage);
+        }
+
+        #s11 .s11-card h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        #s11 .s11-card p {
+            margin-bottom: 0;
+            line-height: 1.8;
+        }
+
+        /* Section 12｜日常生活 */
+        #s12 {
+            padding: 65px 0;
+            background: var(--bg-main);
+        }
+
+        #s12 .s12-title {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+        }
+
+        #s12 .s12-subtitle {
+            margin: 14px auto 35px;
+            color: var(--text-muted);
+        }
+
+        #s12 .s12-card {
+            height: 100%;
+            padding: 32px 25px;
+            background: white;
+            border: 1px solid var(--border-green);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        #s12 .s12-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        #s12 .s12-icon {
+            margin-bottom: 20px;
+            color: var(--green-sage);
+            font-size: 2.8rem;
+        }
+
+        #s12 .s12-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        #s12 .s12-card p {
+            margin-bottom: 0;
+            color: var(--text-muted);
+        }
+
+        /* Section 13｜講座報名與地圖 */
+        #s13 {
+            padding: 60px 0;
+            background: var(--bg-soft);
+        }
+
+        #s13 .section-title {
+            font-weight: 800;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+        }
+
+        #s13 .form-control,
+        #s13 .form-select {
+            border: 1px solid var(--border-green);
+            border-radius: 12px;
+            background-color: white;
+        }
+
+        #s13 .form-control:focus,
+        #s13 .form-select:focus {
+            border-color: var(--green-sage);
+            box-shadow: 0 0 0 0.2rem rgba(106, 156, 123, 0.18);
+        }
+
+        #s13 .form-floating label {
+            color: var(--text-muted);
+        }
+
+        #s13 iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            border: 0;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* Section 14｜品牌理念大圖 */
+        #s14 {
+            background: var(--green-deep);
+        }
+
+        #s14 .bg-img {
+            min-height: 600px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        #s14 .col-8 {
+            width: min(80%, 650px);
+            padding: 28px !important;
+            background: rgba(44, 76, 56, 0.62) !important;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(4px);
+        }
+
+        #s14 .h2 {
+            color: white;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.5;
+        }
+
+        /* Section 15｜Footer */
+        #s15 {
+            padding: 22px 0;
+            background: var(--green-dark-text) !important;
+        }
+
+        #s15 .nav {
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #s15 .nav-link {
+            color: #EAF5EF;
+            font-weight: 500;
+        }
+
+        #s15 .nav-link:hover {
+            color: white;
+        }
+
+        #s15 .nav-link.disabled {
+            color: rgba(234, 245, 239, 0.55);
+        }
+
+        /* RWD｜平板 */
+        @media (max-width: 991.98px) {
+            #s02 .navbar-brand {
+                font-size: 1.15rem;
+            }
+
+            #s02 .btn-register,
+            #s02 .btn-login {
+                margin: 6px 4px 6px 0;
+            }
+
+            #s04 .ot-intro-img {
+                min-height: 400px;
+                border-radius: 0;
+            }
+
+            #s04 .ot-intro-content {
+                padding-top: 45px !important;
+                padding-bottom: 45px !important;
+            }
+
+            #s05 .imgbox {
+                min-height: 250px;
+            }
+
+            #s05 .timeline-content {
+                padding: 22px;
+            }
+
+            #s10 .s10-card {
+                padding: 22px;
+            }
+
+            #s10 .s10-icon {
+                font-size: 2.2rem;
+                flex-basis: 48px;
+            }
+        }
+
+        /* RWD｜手機 */
+        @media (max-width: 767.98px) {
+            #s01 .social-wrapper {
+                gap: 10px;
+            }
+
+            #s01 .social-icons i {
+                font-size: 1.4rem;
+            }
+
+            #s03 .carousel-item img {
+                height: 68vh !important;
+                min-height: 380px;
+            }
+
+            #s03 .carousel-caption {
+                display: block !important;
+                bottom: 7%;
+                left: 8%;
+                right: 8%;
+            }
+
+            #s03 .carousel-caption h5 {
+                font-size: 1.15rem;
+            }
+
+            #s03 .carousel-caption p {
+                font-size: 0.88rem;
+                max-height: 125px;
+                overflow: auto;
+            }
+
+            #s04 .ot-intro-img {
+                min-height: 300px;
+            }
+
+            #s04 .ot-intro-title {
+                font-size: 1.8rem;
+            }
+
+            #s05 {
+                padding: 45px 0;
+            }
+
+            #s05 .timeline-title {
+                margin-bottom: 35px !important;
+            }
+
+            #s05 .timeline-section {
+                padding-left: 25px;
+            }
+
+            #s05 .timeline-section::before {
+                left: 10px;
+                transform: none;
+            }
+
+            #s05 .timeline-section-pointer::before {
+                left: 10px;
+                top: 18px;
+                width: 22px;
+                height: 22px;
+                transform: translateX(-50%);
+            }
+
+            #s05 .timeline-section-pointer {
+                margin-bottom: 35px;
+            }
+
+            #s05 .timeline-section-pointer .col-md-6 {
+                width: 100%;
+                margin-bottom: 16px;
+            }
+
+            #s05 .timeline-section-pointer .col-md-6:last-child {
+                margin-bottom: 0;
+            }
+
+            #s05 .imgbox {
+                min-height: 230px;
+            }
+
+            #s05 .timeline-content {
+                padding: 20px;
+            }
+
+            #s05 .timeline-content .h2 {
+                font-size: 1.15rem;
+            }
+
+            #s06,
+            #s07,
+            #s08,
+            #s09 {
+                min-height: auto;
+                padding: 40px 0;
+            }
+
+            #s06 .bg-img,
+            #s07 .bg-img,
+            #s08 .bg-img,
+            #s09 .bg-img {
+                display: none !important;
+            }
+
+            #s06 .container .col-md-7,
+            #s07 .container .col-md-7,
+            #s08 .container .col-md-7,
+            #s09 .container .col-md-7 {
+                width: 100%;
+                padding: 28px 24px;
+                border-radius: 20px;
+            }
+
+            #s06 .h2,
+            #s07 .h2,
+            #s08 .h2,
+            #s09 .h2 {
+                font-size: 1.5rem;
+            }
+
+            #s10 {
+                padding: 35px 0;
+            }
+
+            #s10 .s10-card {
+                align-items: flex-start !important;
+                min-height: auto;
+                padding: 22px;
+            }
+
+            #s10 .s10-icon {
+                margin-top: 4px;
+                font-size: 1.9rem;
+                flex-basis: 38px;
+            }
+
+            #s10 .s10-card-title {
+                font-size: 1.15rem;
+            }
+
+            #s11,
+            #s12 {
+                padding: 45px 0;
+            }
+
+            #s13 {
+                padding: 40px 0;
+            }
+
+            #s13 iframe {
+                min-height: 350px;
+                margin-top: 25px;
+            }
+
+            #s14 .bg-img {
+                min-height: 420px !important;
+            }
+
+            #s14 .col-8 {
+                width: 92%;
+                padding: 20px !important;
+            }
+
+            #s15 .nav {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        /* RWD｜小手機 Modal 欄位 */
+        @media (max-width: 575.98px) {
+            #reigisterModal .modal-body .row>.col-6 {
+                width: 100%;
+            }
+
+            #reigisterModal .modal-body .row>.col-6:first-child {
+                margin-bottom: 20px;
+            }
+
+            .modal-dialog {
+                margin: 12px;
+            }
+
+            #s01 .more-info {
+                font-size: 0.78rem;
+            }
+
+            #s03 .carousel-caption>div {
+                padding: 14px !important;
+            }
+
+            #s03 .carousel-caption p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- section 01 社群連結 ai-->
+    <section id="s01" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-offset="0">
+        <div class="container">
+            <div class="row">
+                <div class="text-end py-2">
+
+                    <div class="social-wrapper">
+
+                        <div class="more-info">
+                            <span>了解更多</span>
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        </div>
+
+                        <div class="social-icons">
+                            <a href="#" class="text-decoration-none me-3 social-twitter">
+                                <i class="fa-brands fa-twitter fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-decoration-none me-3 social-instagram">
+                                <i class="fa-brands fa-instagram fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-decoration-none social-facebook">
+                                <i class="fa-brands fa-facebook fa-2x"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 02 選單 Navbar ai-->
+    <section id="s02" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-offset="0">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+
+                    <a class="navbar-brand" href="#">
+                        <i class="fa-brands fa-envira"></i>認識職能治療
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#s04">簡介</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#s05">台灣職能治療發展史</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    領域
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#s06">成人</a></li>
+                                    <li><a class="dropdown-item" href="#s07">兒童</a></li>
+                                    <li><a class="dropdown-item" href="#s08">精神</a></li>
+                                    <li><a class="dropdown-item" href="#s08">長照與社區</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                        <div>
+                            <button class="btn btn-register" data-bs-toggle="modal" data-bs-target="#reigisterModal">
+                                <i class="fa-solid fa-user-plus me-1"></i>註冊
+                            </button>
+
+                            <button class="btn btn-login" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                <i class="fa-solid fa-right-to-bracket me-1"></i>登入
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+
+
+    <!-- registerModal -->
+    <div class="modal fade" id="reigisterModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true"
+        data-bs-backdrop="static">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header register-header">
+                    <h1 class="modal-title fs-5" id="registerModalLabel">
+                        <i class="fa-solid fa-leaf me-2"></i>會員註冊
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div>
+                        <div class="row">
+
+                            <div class="col-6">
+                                <h1>會員使用守則</h1>
+
+                                <p>1. 帳號使用規範：每位會員請使用本人資料註冊帳號，請勿冒用他人身分或將帳號提供給他人使用。</p>
+
+                                <p>2. 個人資料保護：請妥善保管個人帳號及密碼，避免於公共電腦或不安全的網路環境中登入，以維護個人資料安全。</p>
+
+                                <p>3. 資訊使用規範：本網站提供職能治療相關衛教資訊，會員不得擅自修改、散布或利用網站內容從事違法行為。</p>
+
+                                <p>4. 醫療資訊聲明：網站內容僅供一般衛生教育與健康知識參考，無法取代專業醫療人員的診斷、評估及治療建議。</p>
+
+                                <p>5. 隱私與服務管理：本網站將妥善保護會員個人資料，並依相關法規及隱私權政策進行資料管理與服務維護。</p>
+
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" id="switch01">
+                                </div>
+
+                                <div id="switch_msg" class="text-secondary mt-2">
+                                    已閱
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">帳號</label>
+                                    <input type="text" class="form-control" id="username">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="re-username" class="form-label">確認帳號</label>
+                                    <input type="text" class="form-control" id="re-username">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">密碼</label>
+                                    <input type="text" class="form-control" id="password">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" class="form-control form-control-lg" id="email">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <a href="#" class="me-auto text-decoration-none" data-bs-toggle="modal"
+                        data-bs-target="#loginModal">
+                        已經有帳號，直接登入
+                    </a>
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        取消
+                    </button>
+
+                    <button type="button" class="btn btn-modal-confirm">
+                        確認
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- loginModal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header login-header">
+                    <h1 class="modal-title fs-5" id="loginModalLabel">
+                        <i class="fa-solid fa-leaf me-2"></i>會員登入
+                    </h1>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label">帳號</label>
+                        <input type="text" class="form-control" id="username">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">密碼</label>
+                        <input type="text" class="form-control" id="password">
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <a href="#" class="me-auto text-decoration-none" data-bs-toggle="modal"
+                        data-bs-target="#reigisterModal">
+                        沒帳號？請註冊
+                    </a>
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        取消
+                    </button>
+
+                    <button type="button" class="btn btn-modal-confirm">
+                        登入
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- section 03 圖片 ai -->
+    <section id="s03">
+        <div id="carouselExampleCaptions" class="carousel slide" data-aos="fade-zoom-in" data-aos-easing="ease-in-back"
+            data-aos-delay="300" data-aos-offset="0">
+
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+
+            <div class="carousel-inner">
+
+                <!-- 第一張：透過活動 -->
+                <div class="carousel-item active">
+                    <img src="images/透過活動.....avif" class="d-block w-100"
+                        style="height: calc(100vh - 120px); object-fit: cover;" alt="透過活動促進復健">
+
+                    <div class="carousel-caption d-none d-md-block">
+                        <div class="p-4 rounded" style="background-color: rgba(0, 0, 0, 0.1);">
+                            <h5>透過活動，解鎖無限可能：用實作點亮康復之路</h5>
+                            <p>精心設計的日常活動與動態引導，我們陪伴您在操作中找回自信與手腦協調。讓每一次的自主參與，都成為通往康復與獨立生活的重要基石</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第二張：結合科技 -->
+                <div class="carousel-item">
+                    <img src="images/結合科技......avif" class="d-block w-100"
+                        style="height: calc(100vh - 120px); object-fit: cover;" alt="結合科技與智慧復健">
+
+                    <div class="carousel-caption d-none d-md-block">
+                        <div class="p-4 rounded" style="background-color: rgba(0, 0, 0, 0.1);">
+                            <h5>結合現代科技，引領賦能革命：讓智慧復健實現未來生活</h5>
+                            <p>結合前瞻的現代科技與數位輔具，為您打造更精準、高效的復健體驗。透過科技賦能與人本關懷的交織，協助您輕鬆突破身體限制，解鎖無限可能的健康生活</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第三張：重新參與日常 -->
+                <div class="carousel-item">
+                    <img src="images/重新回到日常活動....avif" class="d-block w-100"
+                        style="height: calc(100vh - 120px); object-fit: cover;" alt="重新參與日常生活">
+
+                    <div class="carousel-caption d-none d-md-block">
+                        <div class="p-4 rounded" style="background-color: rgba(0, 0, 0, 0.1);">
+                            <h5>重新參與日常生活，找回自主尊嚴：每一步都是獨立的起點</h5>
+                            <p>從起床、進食到重返職場，職能治療與您一同克服生理與心理的挑戰。讓我們陪伴您重新參與每一個珍貴的日常生活，找回屬於自己的生活步調與尊嚴</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
+        </div>
+    </section>
+
+
+    <!-- section 04 職能治療介紹 -->
+    <section id="s04" class="ot-intro">
+        <div class="container-fluid">
+            <div class="row align-items-stretch">
+
+                <!-- 左側圖片 -->
+                <div class="col-md-5 bg-img ot-intro-img wow animate__flipInY"
+                    style="background-image:url(images/什麼是ot)" data-wow-duration="4s" data-wow-delay="0s"
+                    data-wow-iteration="1">
+                </div>
+
+                <!-- 右側文字 -->
+                <div class="col-md-7 text-center py-5 ot-intro-content">
+
+                    <h1 class="ot-intro-title wow animate__flipInY" data-wow-duration="4s" data-wow-delay="0s"
+                        data-wow-iteration="1">
+                        職能治療在做什麼?
+                    </h1>
+
+                    <!-- 介紹文字 -->
+                    <div class="ot-intro-description text-start mt-4 wow animate__flipInY" data-wow-duration="4s"
+                        data-wow-delay="0s" data-wow-iteration="1">
+
+                        <p>
+                            職能治療透過有目的的日常活動，協助因生理、心理或發展限制而影響生活的人，重新找回獨立自主的能力。
+                        </p>
+
+                        <ul>
+                            <li>活動範圍：工作、學習、自我照顧與休閒。</li>
+                            <li>治療方式：透過有目的的活動，在實際操作中學習與練習。</li>
+                            <li>協助對象：因生理、心理或發展限制而影響日常生活的人。</li>
+                            <li>治療目標：克服生活挑戰，重建生活節奏。</li>
+                            <li>最終期望：重新參與日常生活，提升獨立自主能力，讓每一天更有意義與尊嚴。</li>
+                        </ul>
+
+                    </div>
+
+                    <!-- 數據卡片 Counter -->
+                    <div class="row mt-5 g-3 justify-content-center">
+
+                        <div class="col-6 col-lg-3 wow animate__zoomInUp" data-wow-duration="1.5s" data-wow-delay="0s"
+                            data-wow-iteration="1">
+                            <div class="ot-stat">
+                                <div class="ot-stat-number counter">4大</div>
+                                <h4>服務領域</h4>
+                                <p>成人、兒童、精神、長照與社區</p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-lg-3 wow animate__zoomInUp" data-wow-duration="1.75s" data-wow-delay="0s"
+                            data-wow-iteration="1">
+                            <div class="ot-stat">
+                                <div class="ot-stat-number counter">3大</div>
+                                <h4>核心目標</h4>
+                                <p>提升功能、促進參與、改善生活品質</p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-lg-3 wow animate__zoomInUp" data-wow-duration="2s" data-wow-delay="0s"
+                            data-wow-iteration="1">
+                            <div class="ot-stat">
+                                <div class="ot-stat-number counter">100%</div>
+                                <h4>以個人為中心</h4>
+                                <p>強調個別化服務理念</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- section 05 台灣職能治療發展史 -->
+    <section id="s05">
+        <div class="container">
+
+            <div class="display-2 text-center fw-900 my-4 timeline-title wow animate__flipInX" data-wow-duration="4s"
+                data-wow-delay="0s" data-wow-iteration="1">
+                台灣職能治療發展史
+            </div>
+
+            <div class="timeline-section wow animate__flipInX" data-wow-duration="4s" data-wow-delay="0s"
+                data-wow-iteration="1">
+
+                <!-- 第一個事件 -->
+                <div class="row mt-3 align-items-center timeline-section-pointer">
+                    <div class="col-md-6">
+                        <div class="imgbox bg-img roller-r" style="background-image: url(images/早期精神ot.jpg);">
+                            <div class="rollerbox-r">
+                                <button class="btn btn-success">早期患者製作手工藝品的情景</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="timeline-content">
+                            <div class="h2 fw-900 text-center">
+                                1946｜職能治療於精神科療養院萌芽
+                            </div>
+                            <p>精神科療養院開始透過手工藝及活動安排，協助患者參與日常活動。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第二個事件 -->
+                <div class="row mt-3 flex-row-reverse align-items-center timeline-section-pointer">
+                    <div class="col-md-6">
+                        <div class="imgbox roller-l" style="background-image: url(images/ot啟用2.jpg);">
+                            <div class="rollerbox-l">
+                                <button class="btn btn-success">這張是樂生療養院「慈光職業治療室」啟用的歷史照片</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="timeline-content">
+                            <div class="h2 fw-900 text-center">
+                                1950–1960年代｜臨床職能治療發展
+                            </div>
+                            <p>復健醫學中心及醫院陸續設立作業治療服務。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第三個事件 -->
+                <div class="row mt-3 align-items-center timeline-section-pointer">
+                    <div class="col-md-6">
+                        <div class="imgbox roller-r" style="background-image: url(images/時間軸3.JPG);">
+                            <div class="rollerbox-r">
+                                <button class="btn btn-success">此為台灣大學職能治療學系實習實作圖</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="timeline-content">
+                            <div class="h2 fw-900 text-center">
+                                1970｜台灣大學開辦職能治療專業教育
+                            </div>
+                            <p>台大醫學院設立復健醫學系，開始培育職能治療專業人才。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第四個事件 -->
+                <div class="row mt-3 flex-row-reverse align-items-center timeline-section-pointer">
+                    <div class="col-md-6">
+                        <div class="imgbox roller-l" style="background-image: url(images/時間軸4.jpg);">
+                            <div class="rollerbox-l">
+                                <button class="btn btn-success">各縣市陸續有職能治療師公會成立</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="timeline-content">
+                            <div class="h2 fw-900 text-center">
+                                1982｜中華民國職能治療學會成立
+                            </div>
+                            <p>中華民國職能治療學會成立，推動專業發展與教育交流。</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- section 06 職能治療領域介紹-成人 -->
+    <section id="s06" style="position: relative;">
+        <div class="row">
+            <div class="col-md-5 bg-img d-none d-md-block wow animate__fadeInLeft"
+                style="background-image: url(images/職能治療成人.avif); height: 500px; position: absolute;top: 0; bottom: 0;"
+                data-wow-duration="4s" data-wow-delay="0s" data-wow-iteration="1">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-md-7 wow animate__fadeInRight" data-wow-duration="4s" data-wow-delay="0s"
+                    data-wow-iteration="1">
+                    <div class="h2">職能領域介紹－成人生理</div>
+
+                    <p><strong>（定義）</strong>透過有目的的活動訓練，協助成人恢復身體功能與日常生活能力</p>
+
+                    <p><strong>（適合對象）</strong>中風、脊髓損傷、腦外傷、骨折及其他影響生活功能的成人</p>
+
+                    <p><strong>（治療方式）</strong>進行肢體活動、肌力訓練、手功能訓練及日常生活技巧練習</p>
+
+                    <a href="#" class="btn btn-warning">相關文章 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 07 職能治療領域介紹--兒童 -->
+    <section id="s07" style="position: relative;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 wow animate__fadeInLeft" data-wow-duration="4s" data-wow-delay="0s"
+                    data-wow-iteration="1">
+                    <div class="h2">職能領域介紹－兒童發展</div>
+
+                    <p><strong>（定義）</strong>透過遊戲與活動訓練，促進兒童動作、認知及日常生活能力發展</p>
+
+                    <p><strong>（適合對象）</strong>發展遲緩、自閉症、注意力不足、學習困難及動作協調不佳的兒童</p>
+
+                    <p><strong>（治療方式）</strong>運用遊戲、感覺統合、精細動作及生活自理訓練，提升兒童參與能力</p>
+
+                    <a href="#" class="btn btn-warning">相關文章 →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-end ">
+            <div class="col-md-5 bg-img d-none d-md-block wow animate__fadeInRight" data-wow-duration="4s"
+                data-wow-delay="0s" data-wow-iteration="1"
+                style="position: absolute;background-image: url(images/職能治療兒童.avif);top: 0; bottom: 0;">
+            </div>
+        </div>
+    </section>
+
+    <!-- section 08 職能治療領域介紹-精神科 -->
+    <section id="s08" style="position: relative;">
+        <div class="row">
+            <div class="col-md-5 bg-img d-none d-md-block wow animate__fadeInLeft"
+                style="background-image: url(images/職能治療精神.avif); height: 500px; position: absolute;top: 0; bottom: 0;"
+                data-wow-duration="4s" data-wow-delay="0s" data-wow-iteration="1">
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-end wow animate__fadeInRight" data-wow-duration="4s" data-wow-delay="0s"
+                data-wow-iteration="1">
+                <div class="col-md-7">
+                    <div class="h2">職能領域介紹－精神科</div>
+
+                    <p><strong>（定義）</strong>透過有意義的活動，協助個案穩定情緒、提升心理健康與生活適應能力</p>
+
+                    <p><strong>（適合對象）</strong>思覺失調症、憂鬱症、躁鬱症、焦慮症及其他心理困擾者</p>
+
+                    <p><strong>（治療方式）</strong>運用生活作息訓練、社交互動、情緒管理及休閒活動，促進生活參與</p>
+
+                    <a href="#" class="btn btn-warning">相關文章 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 09 職能治療領域介紹--長照與社區 -->
+    <section id="s09" style="position: relative;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 wow animate__fadeInLeft" data-wow-duration="4s" data-wow-delay="0s"
+                    data-wow-iteration="1">
+                    <div class="h2">職能領域介紹－長照與社區</div>
+
+                    <p><strong>（定義）</strong>協助長者及社區民眾維持生活功能，提升日常生活的獨立性與生活品質。</p>
+
+                    <p><strong>（適合對象）</strong>高齡長者、失能者、失智症患者及需要生活支持的社區民眾。</p>
+
+                    <p><strong>（治療方式）</strong>進行生活自理訓練、認知活動、輔具使用及居家環境改善，促進安全與生活參與。</p>
+
+                    <a href="#" class="btn btn-warning">相關文章 →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-end">
+            <div class="col-md-5 bg-img d-none d-md-block wow animate__fadeInRight"
+                style="position: absolute;background-image: url(images/長照社區.avif);top: 0; bottom: 0;"
+                data-wow-duration="4s" data-wow-delay="0s" data-wow-iteration="1">
+            </div>
+        </div>
+    </section>
+
+    <!-- section 10 其他領域 -->
+    <section id="s10">
+        <div class="container my-5">
+            <div class="h1 text-center fw-900 my-4 s10-title" data-aos="fade-up">其他職能治療應用領域</div>
+
+            <p class="text-center s10-subtitle fw-600" data-aos="fade-up">
+                除了四大領域，職能治療也能在不同環境中協助人們提升生活與參與能力。
+            </p>
+
+            <div class="row">
+                <!-- 學校系統 -->
+                <div class="col-md-6 d-flex align-items-center mt-3" data-aos="fade-up">
+                    <div class="s10-card d-flex align-items-center">
+                        <i class="fa-solid fa-school s10-icon me-3"></i>
+                        <div>
+                            <div class="h3 s10-card-title">學校系統</div>
+                            <p class="mb-3">協助學生提升書寫、專注及課堂參與能力，改善學習環境與日常校園適應。</p>
+                            <a href="#" class="btn btn-outline-success">
+                                <i class="fa-solid fa-book-open me-2"></i>相關文章 →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 醫療輔具 -->
+                <div class="col-md-6 d-flex align-items-center mt-3" data-aos="fade-down">
+                    <div class="s10-card d-flex align-items-center">
+                        <i class="fa-solid fa-wheelchair-move s10-icon me-3"></i>
+                        <div>
+                            <div class="h3 s10-card-title">醫療輔具</div>
+                            <p class="mb-3">依照個人需求選擇合適輔具，提升移動、自我照顧與日常生活的便利性。</p>
+                            <a href="#" class="btn btn-outline-success">
+                                <i class="fa-solid fa-book-open me-2"></i>相關文章 →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 職業復健與職場健康 -->
+                <div class="col-md-6 d-flex align-items-center mt-3" data-aos="fade-right">
+                    <div class="s10-card d-flex align-items-center">
+                        <i class="fa-solid fa-briefcase-medical s10-icon me-3"></i>
+                        <div>
+                            <div class="h3 s10-card-title">職業復健與職場健康</div>
+                            <p class="mb-3">協助個案重返工作，改善工作姿勢、職場環境及工作耐力，降低職業傷害風險。</p>
+                            <a href="#" class="btn btn-outline-success">
+                                <i class="fa-solid fa-book-open me-2"></i>相關文章 →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 急性醫療與加護病房 -->
+                <div class="col-md-6 d-flex align-items-center mt-3" data-aos="fade-left">
+                    <div class="s10-card d-flex align-items-center">
+                        <i class="fa-solid fa-hospital s10-icon me-3"></i>
+                        <div>
+                            <div class="h3 s10-card-title">急性醫療與加護病房</div>
+                            <p class="mb-3">透過早期活動、功能訓練及日常生活介入，協助病患維持功能並促進恢復。</p>
+                            <a href="#" class="btn btn-outline-success">
+                                <i class="fa-solid fa-book-open me-2"></i>相關文章 →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 11 職能治療核心目標 -->
+    <section id="s11">
+        <div class="container">
+            <h2 class="text-center my-3 s11-title" data-aos="fade-up-right">職能治療核心目標</h2>
+
+            <div class="row g-4">
+                <!-- 提升功能 -->
+                <div class="col-md-4 text-center" data-aos="fade-up-right">
+                    <div class="s11-card">
+                        <i class="fa-solid fa-crosshairs fa-4x s11-icon"></i>
+                        <h3 class="my-4">提升功能</h3>
+                        <p>透過活動與技能訓練，改善身體、認知及心理功能，提升日常生活自理能力。</p>
+                    </div>
+                </div>
+
+                <!-- 促進參與 -->
+                <div class="col-md-4 text-center" data-aos="fade-up-left">
+                    <div class="s11-card">
+                        <i class="fa-solid fa-people-group fa-4x s11-icon"></i>
+                        <h3 class="my-4">促進參與</h3>
+                        <p>協助個案重新參與家庭、學校、工作及社交活動，建立與他人的連結。</p>
+                    </div>
+                </div>
+
+                <!-- 改善生活品質 -->
+                <div class="col-md-4 text-center" data-aos="fade-up-left">
+                    <div class="s11-card">
+                        <i class="fa-solid fa-heart fa-4x s11-icon"></i>
+                        <h3 class="my-4">改善生活品質</h3>
+                        <p>依照個人需求與目標，提升生活自主性、滿足感及整體生活品質。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section 12 職能治療與日常生活 -->
+    <section id="s12">
+        <div class="container my-5">
+            <h2 class="text-center s12-title wow animate__rotateInUpRight" data-wow-duration="1s" data-wow-delay="0s"
+                data-wow-iteration="1">職能治療與日常生活</h2>
+            <p class="text-center s12-subtitle wow animate__rotateInUpRight" data-wow-duration="2s" data-wow-delay="0s"
+                data-wow-iteration="1">
+                職能治療融入生活中的每個環節，協助人們重新找回自主與參與的能力。
+            </p>
+
+            <div class="row g-4">
+
+                <!-- 自我照顧 -->
+                <div class="col-12 col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="1000">
+                    <div class="s12-card text-center">
+                        <i class="fa-solid fa-person-dress s12-icon"></i>
+                        <h3>自我照顧</h3>
+                        <p>透過穿衣、洗澡、吃飯等日常活動訓練，提升生活自理能力。</p>
+                    </div>
+                </div>
+
+                <!-- 學習活動 -->
+                <div class="col-12 col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="2000">
+                    <div class="s12-card text-center">
+                        <i class="fa-solid fa-book-open s12-icon"></i>
+                        <h3>學習活動</h3>
+                        <p>協助提升書寫、專注力與課堂參與能力，讓學習更加順利。</p>
+                    </div>
+                </div>
+
+                <!-- 工作活動 -->
+                <div class="col-12 col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="1500">
+                    <div class="s12-card text-center">
+                        <i class="fa-solid fa-briefcase s12-icon"></i>
+                        <h3>工作活動</h3>
+                        <p>改善工作能力、職場適應與工作環境，協助個案重返職場。</p>
+                    </div>
+                </div>
+
+                <!-- 家庭生活 -->
+                <div class="col-12 col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="1500">
+                    <div class="s12-card text-center">
+                        <i class="fa-solid fa-house s12-icon"></i>
+                        <h3>家庭生活</h3>
+                        <p>透過家務活動與環境調整，協助安全且獨立地參與家庭生活。</p>
+                    </div>
+                </div>
+
+                <!-- 社交活動 -->
+                <div class="col-12 col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="1000">
+                    <div class="s12-card text-center">
+                        <i class="fa-solid fa-people-group s12-icon"></i>
+                        <h3>社交活動</h3>
+                        <p>促進人際互動與社區參與，建立良好的社交關係與生活連結。</p>
+                    </div>
+                </div>
+
+                <!-- 休閒活動 -->
+                <div class="col-12 col-md-6 col-lg-4" data-aos="zoom-in" data-aos-duration="2000">
+                    <div class="s12-card text-center">
+                        <i class="fa-solid fa-puzzle-piece s12-icon"></i>
+                        <h3>休閒活動</h3>
+                        <p>透過運動、遊戲與興趣活動，提升生活樂趣與心理健康。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- section 13 講座報名 -->
+    <section id="s13">
+        <div class="container py-4 wow animate__hinge">
+            <div class="h1 text-center section-title my-4">相關講座報名</div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 form-floating">
+                        <input type="text" class="form-control form-control-lg " id="username" placeholder="">
+                        <label for="username" class="form-label">姓名</label>
+                    </div>
+                    <div class="mb-3 form-floating">
+                        <input type="text" class="form-control form-control-lg" id="email" placeholder="">
+                        <label for="email" class="form-label">電子信箱</label>
+                    </div>
+                    <select name="" class="form-select form-select-lg " id="">
+                        <option value="" selected disabled class="text-center fw-900">---講座主題---</option>
+                        <option>中風醫療照護</option>
+                        <option>兒童發展里程碑</option>
+                        <option>精神團體動力學</option>
+                        <option>社區復健</option>
+                    </select>
+                    <textarea name="" id="" class="form-control my-3" cols="10" rows="8"
+                        placeholder="其他想了解的內容...."></textarea>
+                    <div class="text-end my-3">
+                        <button class="btn btn-primary">送出</button>
+                        <button class="btn btn-secondary">取消</button>
+
+                    </div>
+                </div>
+                <div class="col-md-6" style="height: 500px;">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d17319.498320634528!2d120.67786028005656!3d24.137480518240707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d64d1044fd1%3A0xf2a8df92e82772a8!2zNDA06Ie65Lit5biC5YyX5Y2A6YKx5Y6d6YeM5aSn6ZuF6LevMTAw5be3MuW8hOiZnywgNw!5e0!3m2!1szh-TW!2stw!4v1793674349207!5m2!1szh-TW!2stw"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+    </section>
+
+    <!-- section 14 總結 -->
+    <section id="s14">
+        <div class="row">
+            <div class="col-md-6 bg-img position-relative" style="background-image: url(images/陪伴.avif); height: 600px;"
+                data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+
+                <div class="col-8 p-3 shadow-sm" style="background-color: rgba(0, 0, 0, 0.1);
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);">
+
+                    <div class="h2 text-white">
+                        每個人都有生活的可能，而我們陪你重新點亮它
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-6 bg-img position-relative" style="background-image: url(images/危橋.avif); height: 600px;"
+                data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+
+                <div class="col-8 p-3 shadow-sm" style="background-color: rgba(0, 0, 0, 0.1);
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);">
+
+                    <div class="h2 text-white">
+                        以職能為橋，陪伴每個人走向自主而有意義的生活
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- section 15 Footer -->
+    <section id="s15" class="bg-dark">
+        <div class="container">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#s01">回到頂端</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#s01">聯絡我們</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">copyright by xxxxx</a>
+                </li>
+            </ul>
+
+        </div>
+    </section>
+
+
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script>
+        const counterUp = window.counterUp.default
+
+        const callback = entries => {
+            entries.forEach(entry => {
+                const el = entry.target
+                if (entry.isIntersecting && !el.classList.contains('is-visible')) {
+                    counterUp(el, {
+                        duration: 2000,
+                        delay: 16,
+                    })
+                    el.classList.add('is-visible')
+                }
+            })
+        }
+
+        const IO = new IntersectionObserver(callback, { threshold: 1 })
+
+        const counters = document.querySelectorAll('.counter')
+        counters.forEach(el => IO.observe(el))
+    </script>
+
+    <script src="js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+
+</html>
