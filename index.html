@@ -7,19 +7,17 @@
     <title>學習歷程首頁</title>
     <link rel="stylesheet" href="myallcss.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap');
 
         :root {
-            --lakers-purple: #552583;
-            --lakers-dark-purple: #3A1A5B;
-            --lakers-light-purple: #6A35A0;
-            --lakers-gold: #FDB927;
-            --lakers-dark-gold: #C58A00;
-            --neon-blue: #00E5FF;
-            --neon-pink: #FF00E5;
-            --bg-black: #050510;
-            --bg-dark: #0B0B1A;
-            --text-white: #FFFFFF;
+            --grid-blue: #6FC3DF;
+            --beam: #DFFEFF;
+            --cyan-glow: #00D4FF;
+            --clu-orange: #FF7A1A;
+            --void: #000000;
+            --panel: rgba(2, 14, 22, 0.88);
+            --text: #D6F4FF;
+            --step: 0.35s;
         }
 
         * {
@@ -29,21 +27,16 @@
         body {
             margin: 0;
             min-height: 100vh;
-            padding: 50px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            padding: 56px 20px 80px;
             font-family: 'Noto Sans TC', sans-serif;
-            color: var(--text-white);
+            color: var(--text);
             background:
-                radial-gradient(ellipse at 15% 20%, rgba(85, 37, 131, 0.30), transparent 45%),
-                radial-gradient(ellipse at 85% 80%, rgba(0, 229, 255, 0.12), transparent 45%),
-                linear-gradient(135deg, #050510, #101025 50%, #080814);
-            background-attachment: fixed;
+                radial-gradient(ellipse at 50% -10%, rgba(0, 212, 255, 0.16), transparent 55%),
+                var(--void);
             overflow-x: hidden;
         }
 
+        /* 電路網格地板 */
         body::before {
             content: "";
             position: fixed;
@@ -51,189 +44,211 @@
             z-index: -1;
             pointer-events: none;
             background-image:
-                linear-gradient(rgba(0, 229, 255, 0.045) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 229, 255, 0.045) 1px, transparent 1px);
-            background-size: 35px 35px;
-            mask-image: linear-gradient(to bottom, black, transparent 90%);
+                linear-gradient(rgba(111, 195, 223, 0.10) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(111, 195, 223, 0.10) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse at 50% 30%, black 25%, transparent 78%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 25%, transparent 78%);
         }
 
         .mytitle01 {
             width: min(900px, 100%);
-            margin: 0 auto 35px;
-            padding: 25px 20px;
+            margin: 0 auto 64px;
+            padding: 26px 16px;
             text-align: center;
-            font-family: 'DotGothic16', 'Noto Sans TC', sans-serif;
-            font-size: clamp(26px, 5vw, 42px);
-            font-weight: 900;
-            letter-spacing: 4px;
-            color: var(--lakers-gold);
-            background: linear-gradient(135deg,
-                    rgba(85, 37, 131, 0.25),
-                    rgba(10, 10, 30, 0.92),
-                    rgba(0, 229, 255, 0.08));
-            border: 1px solid rgba(253, 185, 39, 0.75);
-            border-radius: 12px;
-            box-shadow:
-                0 0 10px rgba(253, 185, 39, 0.3),
-                0 0 25px rgba(85, 37, 131, 0.45),
-                inset 0 0 18px rgba(85, 37, 131, 0.2);
-            text-shadow:
-                0 0 5px rgba(253, 185, 39, 0.8),
-                0 0 15px rgba(253, 185, 39, 0.45);
+            font-family: 'Orbitron', 'Noto Sans TC', sans-serif;
+            font-size: clamp(24px, 4.6vw, 40px);
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: var(--beam);
+            text-shadow: 0 0 6px var(--cyan-glow), 0 0 22px rgba(0, 212, 255, 0.55);
+            border-top: 1px solid var(--grid-blue);
+            border-bottom: 1px solid var(--grid-blue);
+            box-shadow: 0 -6px 18px -10px var(--cyan-glow), 0 6px 18px -10px var(--cyan-glow);
             position: relative;
         }
 
+        /* 標題兩端的光點 */
         .mytitle01::before,
         .mytitle01::after {
             content: "";
             position: absolute;
-            width: 35px;
-            height: 3px;
-            background: var(--neon-blue);
-            box-shadow: 0 0 10px var(--neon-blue);
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            margin-top: -4px;
+            background: var(--clu-orange);
+            box-shadow: 0 0 10px var(--clu-orange);
         }
 
-        .mytitle01::before {
-            top: -2px;
-            left: 20px;
-        }
+        .mytitle01::before { left: 0; }
+        .mytitle01::after { right: 0; }
 
-        .mytitle01::after {
-            bottom: -2px;
-            right: 20px;
-        }
-
+        /* ===== 項目列表：之字形 ===== */
         ul {
-            width: min(900px, 100%);
+            position: relative;
+            width: min(960px, 100%);
             margin: 0 auto;
-            padding: 20px;
+            padding: 0;
             list-style: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            background: rgba(10, 10, 28, 0.78);
-            border: 1px solid rgba(0, 229, 255, 0.35);
-            border-radius: 14px;
-            box-shadow:
-                0 0 15px rgba(0, 229, 255, 0.12),
-                0 0 35px rgba(85, 37, 131, 0.22),
-                inset 0 0 25px rgba(85, 37, 131, 0.08);
+            counter-reset: node;
         }
 
         li {
-            width: 100%;
-            max-width: 760px;
-            text-align: center;
+            counter-increment: node;
+            margin: 0 0 58px;
+            position: relative;
+            z-index: 1;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
         }
 
         li a {
-            display: block;
-            position: relative;
-            width: 100%;
-            padding: 17px 22px;
-            overflow-wrap: anywhere;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 44%;
+            padding: 16px 20px;
             text-decoration: none;
-            font-size: 17px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: #E8E8FF;
-            background: linear-gradient(100deg,
-                    rgba(85, 37, 131, 0.30),
-                    rgba(18, 18, 42, 0.95),
-                    rgba(0, 229, 255, 0.07));
-            border: 1px solid rgba(106, 53, 160, 0.8);
-            border-left: 4px solid var(--lakers-gold);
-            border-radius: 7px;
-            box-shadow:
-                0 0 8px rgba(85, 37, 131, 0.25),
-                inset 0 0 12px rgba(85, 37, 131, 0.08);
-            transition:
-                transform 0.25s ease,
-                color 0.25s ease,
-                border-color 0.25s ease,
-                box-shadow 0.25s ease,
-                background 0.25s ease;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.5;
+            letter-spacing: 0.04em;
+            overflow-wrap: anywhere;
+            color: var(--text);
+            background: var(--panel);
+            border: 1px solid rgba(111, 195, 223, 0.55);
+            box-shadow: inset 0 0 14px rgba(0, 212, 255, 0.06);
+            position: relative;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
         }
 
+        li:nth-child(even) a {
+            margin-left: auto;
+        }
+
+        /* 序號：依時間排序的節點 */
         li a::before {
-            content: "▶";
-            display: inline-block;
-            margin-right: 12px;
-            color: var(--neon-blue);
-            font-size: 12px;
-            text-shadow: 0 0 8px var(--neon-blue);
-            transition: transform 0.25s ease;
+            content: counter(node, decimal-leading-zero);
+            flex: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--grid-blue);
+            transition: color 0.2s ease, text-shadow 0.2s ease;
         }
 
-        li a:hover {
-            color: var(--lakers-gold);
-            background: linear-gradient(100deg,
-                    rgba(85, 37, 131, 0.65),
-                    rgba(20, 15, 45, 0.98),
-                    rgba(0, 229, 255, 0.14));
-            border-color: var(--neon-blue);
-            box-shadow:
-                0 0 8px rgba(0, 229, 255, 0.45),
-                0 0 20px rgba(85, 37, 131, 0.65),
-                inset 0 0 18px rgba(0, 229, 255, 0.08);
-            transform: translateY(-3px);
-            text-shadow: 0 0 8px rgba(253, 185, 39, 0.5);
+        /* 角落亮片 */
+        li a::after {
+            content: "";
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            width: 14px;
+            height: 14px;
+            border-top: 2px solid var(--beam);
+            border-right: 2px solid var(--beam);
+            opacity: 0.7;
         }
 
-        li a:hover::before {
-            transform: translateX(4px);
+        /* 被光束照到的狀態 */
+        li a.lit {
+            color: var(--beam);
+            border-color: var(--beam);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.7), inset 0 0 16px rgba(0, 212, 255, 0.18);
+        }
+
+        li a.lit::before {
+            color: var(--beam);
+            text-shadow: 0 0 8px var(--cyan-glow);
+        }
+
+        /* 發射器（被 hover 的項目）改為橘色 */
+        li a.emitter {
+            border-color: var(--clu-orange);
+            box-shadow: 0 0 12px rgba(255, 122, 26, 0.7), inset 0 0 16px rgba(255, 122, 26, 0.16);
+            transition-delay: 0s !important;
+        }
+
+        li a.emitter::before {
+            color: var(--clu-orange);
+            text-shadow: 0 0 8px var(--clu-orange);
+        }
+
+        li a.emitter::after {
+            border-color: var(--clu-orange);
         }
 
         li a:focus-visible {
-            outline: 2px solid var(--neon-blue);
+            outline: 2px solid var(--beam);
             outline-offset: 4px;
         }
 
-        @media screen and (max-width: 768px) {
+        /* ===== 光線層 ===== */
+        .beams {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .beams path {
+            fill: none;
+            stroke-linejoin: miter;
+        }
+
+        .beams .base {
+            stroke: rgba(111, 195, 223, 0.28);
+            stroke-width: 1.5;
+        }
+
+        .beams .beam {
+            stroke: var(--beam);
+            stroke-width: 3;
+            stroke-dasharray: 1 1;
+            stroke-dashoffset: 1;
+            filter: drop-shadow(0 0 3px var(--cyan-glow)) drop-shadow(0 0 9px var(--cyan-glow));
+            transition: stroke-dashoffset var(--step) linear;
+        }
+
+        .beams .beam.on {
+            stroke-dashoffset: 0;
+        }
+
+        /* 手機：單欄，光線沿左側垂直連接 */
+        @media screen and (max-width: 700px) {
             body {
-                padding: 30px 15px;
+                padding: 36px 14px 60px;
             }
 
             .mytitle01 {
-                margin-bottom: 25px;
-                padding: 22px 12px;
-                letter-spacing: 2px;
+                margin-bottom: 44px;
+                letter-spacing: 0.12em;
             }
 
-            ul {
-                padding: 14px;
-                gap: 13px;
+            li {
+                margin-bottom: 36px;
             }
 
-            li a {
-                padding: 15px 12px;
+            li a,
+            li:nth-child(even) a {
+                width: calc(100% - 30px);
+                margin-left: 30px;
+                padding: 14px 14px;
                 font-size: 15px;
-                letter-spacing: 0.5px;
             }
         }
 
-        @media screen and (max-width: 480px) {
-            body {
-                padding: 24px 12px;
-            }
-
-            .mytitle01 {
-                font-size: 25px;
-                letter-spacing: 1px;
-            }
-
-            ul {
-                padding: 10px;
-            }
-
+        @media (prefers-reduced-motion: reduce) {
+            .beams .beam,
             li a {
-                font-size: 14px;
-                padding: 14px 9px;
-            }
-
-            li a::before {
-                margin-right: 7px;
+                transition-duration: 0s !important;
+                transition-delay: 0s !important;
             }
         }
     </style>
@@ -258,11 +273,101 @@
         <li><a href="履歷.html" target="_blank">個人履歷(20261027)</a></li>
         <li><a href="20261027 SPA.html" target="_blank">個人簡介(20261029)</a></li>
         <li><a href="職能治療SPA專案.html" target="_blank">職能治療介紹 個人SPA(20261105)</a></li>
-
-
-
     </ul>
+
     <script src="js/jquery-4.0.0.js"></script>
+    <script>
+        (function () {
+            var NS = 'http://www.w3.org/2000/svg';
+            var STEP = 0.35; // 每一段光線的行進秒數，需與 CSS --step 一致
+            var ul = document.querySelector('ul');
+            var links = Array.prototype.slice.call(ul.querySelectorAll('li a'));
+            var svg = document.createElementNS(NS, 'svg');
+            svg.setAttribute('class', 'beams');
+            svg.setAttribute('aria-hidden', 'true');
+            ul.insertBefore(svg, ul.firstChild);
+            var beams = [];
+
+            function box(el) {
+                var u = ul.getBoundingClientRect();
+                var r = el.getBoundingClientRect();
+                return {
+                    left: r.left - u.left,
+                    right: r.right - u.left,
+                    top: r.top - u.top,
+                    cx: r.left - u.left + r.width / 2,
+                    cy: r.top - u.top + r.height / 2
+                };
+            }
+
+            function addPath(d, cls) {
+                var p = document.createElementNS(NS, 'path');
+                p.setAttribute('d', d);
+                p.setAttribute('class', cls);
+                p.setAttribute('pathLength', '1');
+                svg.appendChild(p);
+                return p;
+            }
+
+            function draw() {
+                while (svg.firstChild) svg.removeChild(svg.firstChild);
+                beams = [];
+                var mobile = window.matchMedia('(max-width: 700px)').matches;
+                for (var i = 0; i < links.length - 1; i++) {
+                    var a = box(links[i]);
+                    var b = box(links[i + 1]);
+                    var d;
+                    if (mobile) {
+                        // 從目前項目左緣出發，沿左側軌道向下，再射入下一項
+                        d = 'M' + a.left + ' ' + a.cy + 'H10V' + b.cy + 'H' + b.left;
+                    } else {
+                        // 水平射出 → 在下一項正上方的「鏡面」轉 90° → 垂直射入
+                        var sx = a.cx < b.cx ? a.right : a.left;
+                        d = 'M' + sx + ' ' + a.cy + 'H' + b.cx + 'V' + b.top;
+                    }
+                    addPath(d, 'base');
+                    beams.push(addPath(d, 'beam'));
+                }
+            }
+
+            function fire(from) {
+                links.forEach(function (l, k) {
+                    if (k < from) return;
+                    l.style.transitionDelay = (k - from) * STEP + 's';
+                    l.classList.add('lit');
+                    if (k === from) l.classList.add('emitter');
+                });
+                beams.forEach(function (p, k) {
+                    if (k < from) return;
+                    p.style.transitionDelay = (k - from) * STEP + 's';
+                    p.classList.add('on');
+                });
+            }
+
+            function cease() {
+                links.forEach(function (l) {
+                    l.style.transitionDelay = '0s';
+                    l.classList.remove('lit', 'emitter');
+                });
+                beams.forEach(function (p) {
+                    p.style.transitionDelay = '0s';
+                    p.classList.remove('on');
+                });
+            }
+
+            links.forEach(function (l, i) {
+                l.addEventListener('mouseenter', function () { fire(i); });
+                l.addEventListener('mouseleave', cease);
+                l.addEventListener('focus', function () { fire(i); });
+                l.addEventListener('blur', cease);
+            });
+
+            draw();
+            window.addEventListener('resize', draw);
+            window.addEventListener('load', draw);
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+        })();
+    </script>
 </body>
 
 </html>
