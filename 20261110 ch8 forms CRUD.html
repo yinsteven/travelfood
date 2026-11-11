@@ -120,7 +120,7 @@
                 }
             });
 
-            //數量
+            //數量 不用立flag
             $("#num").on("change", function () {
                 console.log($(this).val());
                 $("#num-text").text($(this).val());
@@ -151,6 +151,7 @@
                 if (flag_pname && flag_price && flag_category && flag_remark) {
                     $("#showmsg").removeClass("d-none");
 
+                    //這個動作叫做「蒐集資料」 JS 就會將這些資料存進變數
                     const pname = $("#pname").val();
                     const price = $("#price").val();
                     const num = $("#num").val();
@@ -177,7 +178,7 @@
                 }
             });
 
-            //確認送出 #send-btn
+            //確認送出 #send-btn 先對已經存在的 showmsg 綁定 click 事件，當它底下的 send-btn 被點擊時，才執行這個 function。
             $("#showmsg").on("click", "#send-btn", function () {
                 //蒐集欄位資料
                 const pname = $("#pname").val();
@@ -198,17 +199,19 @@
                 console.log(dataJSON);
                 console.log(JSON.stringify(dataJSON));
 
-                //傳送資料至後端API，執行新增動作
+                //傳送資料至後端API，執行新增動作 ,stringify() 的作用是：把 JavaScript 物件轉換成 JSON 字串
+
+
                 $.ajax({
                     type: "POST",
                     url: "http://localhost:3000/product",
                     dataType: "json",
-                    data: JSON.stringify(dataJSON),
-                    contentType: "application/json",
+                    data: JSON.stringify(dataJSON), //要傳送的資料
+                    contentType: "application/json", //告訴後端，送過去的是 JSON 格式
                     success: function (data) {
                         console.log(data)
 
-
+                        //data:後端回傳的資料，這裡是一個json
 
 
                     },
