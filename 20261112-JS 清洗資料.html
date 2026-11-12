@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 重點整理</title>
+</head>
+
+<body>
+
+    <script src="js/jquery-4.0.0.js"></script>
+    <script src="js/TravelFood.js"></script>
+    <script>
+        // map() 
+        const shops = [
+            {
+                name: "好吃小吃店",
+                city: "臺北市",
+                tel: null,
+                address: "臺北市中山區中山北路一段123號",
+                owner: "王小明"
+            },
+            {
+                name: "言言小吃店",
+                city: "臺中市",
+                tel: "",
+                address: "                      臺中市西屯區臺灣大道三段456號",
+                owner: "郭言言"
+            },
+            {
+                name: "睿睿小吃店",
+                city: "新北市",
+                tel: "    1564   ",
+                address: "臺南市中西區中正路789號",
+                owner: "尹睿睿"
+            },
+            {
+                name: "阿華海產粥",
+                city: null,
+                tel: "  07-  7     ",
+                address: "高雄市鹽    埕區大勇路101號",
+                owner: "陳阿華"
+            },
+            {
+                name: "咚咚印度料理",
+                city: null,
+                tel: "  07-  7     ",
+                address: "高雄市鹽    埕區大勇路101號",
+                owner: "蔡咚咚"
+            },
+            {
+                name: "珠垠海鮮",
+                city: null,
+                tel: "  07-  7     ",
+                address: "高雄市鹽    埕區大勇路101號",
+                owner: "李珠垠"
+            },
+            {
+                name: "小李牛肉麵",
+                city: "  新北市 ",
+                tel: "02-88990011",
+                address: "新北市板橋區文化路一段200號",
+                owner: "李多慧   "
+            },
+            {
+                name: "小王拉麵",
+                city: "  彰化縣 ",
+                tel: "02-88990011",
+                address: "彰化縣文化路二段240號",
+                owner: "王建名   "
+            }
+        ];
+
+
+
+
+        //抓出特定item
+        const names = shops.map(function (item) {
+            return item.name
+        })
+
+        console.log("原始資料", shops);
+        console.log("轉換後的資料", names);
+
+        //使用map()並產生新的結構
+        const simpleData = shops.map(function (item) {
+            return {
+                title: item.name,
+                location: item.city
+            }
+        })
+
+        console.log("使用map()並產生新的結構", simpleData);
+
+        //travelfood.js.map()並且產生新的結構
+
+        const simpleDatafood = food.map(function (item, index) {
+            return {
+                id: index + 1,
+                title: item.Name,
+                phone: item.Tel
+            }
+        })
+
+        console.log("travelfood.js.map()並且產生新的結構", simpleDatafood);
+
+
+
+
+
+        //資料清洗   避免裡面有1.null、2.undefined、3.字串前後空白 導致錯誤
+
+        // shops.forEach(function (item) {
+        //     console.log(item.tel.length)
+        // })
+
+        const cleanshops = shops.map(function (item) {
+            return {
+                name: (item.name ?? "未提供").trim(),                // ??將其自動轉為空字串 ""  trim()去除字串前後的空白字元
+                city: (item.city ?? "未提供").trim(),                //不一定較未提供，看公司要怎寫 也可""
+                tel: (item.tel ?? "未提供").trim(),
+                address: (item.address ?? "未提供").trim(),
+                owner: (item.owner ?? "未提供").trim(),
+            }
+        })
+
+        console.log("原本的資料", shops)
+        console.log("清洗後的資料", cleanshops)
+
+
+
+        //資料清楚的自訂函式(副程式)
+        function normalize(data) {
+            return data.map(function (item) {
+                return {
+                    name: (item.name ?? "未提供").trim(),
+                    city: (item.city ?? "未提供").trim(),
+                    tel: (item.tel ?? "未提供").trim(),
+                    address: (item.address ?? "未提供").trim(),
+                    owner: (item.owner ?? "未提供").trim(),
+                }
+            });
+        }
+        console.log("使用自訂函式(副程式)執行資料清洗", normalize(shops));
+
+
+
+
+        //搜尋 filter
+        const result = shops.filter(function (item) {
+            return item.city === "新北市"
+        })
+        console.log("原本資料搜尋結果:", result)    //上面新北市前後有空格
+
+
+
+        const resultCleanData = normalize(shops).filter(function (item) {
+            return item.name.includes("小吃") && item.city === "新北市"         //  .includes和 ===
+        })
+        console.log("清洗後的資料搜尋結果:", resultCleanData)
+
+
+        //travelfood.js 1.清洗資料(副程式)  2.篩選出新北市有介紹(FoodFeature)"美食"的店家
+        function normalizeFood(data) {
+            return data.map(function (item) {
+                return {
+                    city: (item.City ?? "未提供").trim(),
+                    name: (item.Name ?? "未提供").trim(),
+                    tel: (item.Tel ?? "未提供").trim(),
+                    img: (item.PicURL ?? "未提供").trim(),
+                    remark: (item.FoodFeature ?? "未提供").trim(),
+                }
+            });
+        }
+        console.log("使用自訂函式(副程式)執行資料清洗", normalizeFood(food))
+
+        const resultFoodFilter = normalizeFood(food).filter(function (item) {
+            return item.remark.includes("美食") && item.city === "臺中市"
+        })
+
+        console.log("篩選出新北市有介紹(FoodFeature)[美食]的店家", resultFoodFilter)
+
+        //分頁將分頁的思考邏輯轉換成演算法在寫成程式碼
+        //0 1 2 3 4 5 6 7
+        const pageSize = 5
+        const page = 1
+
+        const start = (page - 1) * pageSize
+        const end = start + pageSize
+
+        const pageData = shops.slice(start, end)     //slice()複製一段內容的方法 slice(開始位置, 結束位置)
+        console.log("原始資料", shops)
+        console.log("分頁資料", pageData)
+
+        //1.使用travelfood資料 練習分頁邏輯    
+        //2.清洗 => 篩選 => 分頁
+    </script>
+
+</body>
+
+</html>

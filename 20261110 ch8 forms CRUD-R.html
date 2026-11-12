@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CH8 表單-CRUD練習</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="myallcss.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+
+            /* =========================
+   夜晚霓虹燈效果
+   ========================= */
+
+            /* 整個網頁背景 */
+            body {
+                background-color: #050510;
+                color: white;
+            }
+
+            /* 標題霓虹燈 */
+            .display-2 {
+                color: #00ffff;
+
+                text-shadow:
+                    0 0 5px #00ffff,
+                    0 0 10px #00ffff,
+                    0 0 20px #00ffff,
+                    0 0 40px #00ffff;
+            }
+
+            /* Table 外框 */
+            .table-rwd {
+                background-color: #080818;
+
+                border: 2px solid #00ffff !important;
+
+                box-shadow:
+                    0 0 5px #00ffff,
+                    0 0 15px #00ffff,
+                    0 0 30px #00ffff,
+                    inset 0 0 15px rgba(0, 255, 255, 0.15);
+            }
+
+            /* 表格格線 */
+            .table-rwd th,
+            .table-rwd td {
+                border-color: #00ffff !important;
+            }
+
+            /* 表頭 */
+            .table-rwd thead {
+                background-color: #12002b !important;
+
+                color: #00ffff;
+
+                text-shadow:
+                    0 0 5px #00ffff,
+                    0 0 10px #00ffff;
+            }
+
+            /* 表格內容 */
+            .table-rwd tbody {
+                background-color: #080818;
+            }
+
+            /* 表格文字 */
+            .table-rwd td {
+                color: #ffffff;
+            }
+
+            /* 滑鼠移到某一列 */
+            .table-rwd tbody tr:hover {
+                background-color: #16002b;
+
+                box-shadow:
+                    0 0 10px #ff00ff,
+                    0 0 20px #ff00ff,
+                    inset 0 0 15px rgba(255, 0, 255, 0.2);
+            }
+
+            /* 圖片霓虹邊框 */
+            .table-rwd img {
+                border: 2px solid #ff00ff;
+
+                box-shadow:
+                    0 0 5px #ff00ff,
+                    0 0 10px #ff00ff,
+                    0 0 20px #ff00ff;
+            }
+
+            /* 手機版 data-th 的文字 */
+            @media screen and (max-width: 768px) {
+
+                .table-rwd tbody tr td::before {
+                    color: #00ffff;
+
+                    text-shadow:
+                        0 0 5px #00ffff,
+                        0 0 10px #00ffff;
+                }
+
+            }
+
+            .table-rwd thead {
+                display: none;
+            }
+
+            .table-rwd tbody tr {
+                display: block;
+            }
+
+            .table-rwd tbody tr td {
+                display: block;
+                overflow: hidden;
+            }
+
+            .table-rwd img {
+                width: 150px;
+                height: 100px;
+                object-fit: cover;
+            }
+
+            .table-rwd tbody tr td::before {
+                content: attr(data-th)":";
+                font-size: 20px;
+                font-weight: 900;
+                display: block;
+                float: left;
+                width: 30%;
+                text-align: right;
+                padding-right: 15px;
+                color: aquamarine;
+            }
+
+            .table-rwd tbody tr td span {
+                display: block;
+                float: left;
+                width: 70%;
+            }
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">CRUD練習</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="20261110 ch8 forms CRUD-C.html">產品建檔</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="20261110 ch8 forms CRUD-R.html">產品列表</a>
+                    </li>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mt-4">
+                    <div class="card-header text-info fw-bold h1 text-center">產品列表</div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-rwd">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th width="10%">產品名稱</th>
+                                    <th width="20%">產品價格</th>
+                                    <th width="10%">產品數量</th>
+                                    <th width="10%">產品分類</th>
+                                    <th width="10%">產品備註</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mytbody">
+                                <tr>
+                                    <td data-th="產品名稱">cccccc</td>
+                                    <td data-th="產品價格">cccccc</td>
+                                    <td data-th="產品數量">cccccc</td>
+                                    <td data-th="產品分類">cccccc</td>
+                                    <td data-th="產品備註">cccccc</td>
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-4.0.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(function () {
+            //取得資料 GET API
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:3000/product",
+                dataType: "json",
+                success: showdata,
+                error: function () {
+                    Swal.fire({
+                        title: "讀取失敗!",
+                        text: "無法連接後端API",
+                        icon: "error",
+                    });
+                }
+            })
+        })
+
+        function showdata(data) {
+            console.log(data)
+            $("#mytbody").empty() // 讓第一行消失
+            data.forEach(function (item) {
+                let strHTML = `<tr>
+                                    <td data-th="產品名稱">${item.name}</td>
+                                    <td data-th="產品價格">${item.price}</td>
+                                    <td data-th="產品數量">${item.num}</td>
+                                    <td data-th="產品分類">${item.category}</td>
+                                    <td data-th="產品備註">${item.remark}</td>
+                                </tr>`
+                $("#mytbody").append(strHTML);
+            })
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CH8 表單-CRUD練習</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- 新增：Bootstrap Icons 圖示庫 (需要網路) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="myallcss.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        /* ===== 中古歐洲酒館風 ERP 配色 (CSS 變數集中管理，之後只改這裡) ===== */
+        :root {
+            --oak-dark: #2a1a12;
+            /* 深橡木：側邊欄 */
+            --oak: #3d2a1d;
+            /* 橡木：hover */
+            --parchment: #f1e8d6;
+            /* 羊皮紙：頁面背景 */
+            --paper: #fbf6ea;
+            /* 紙張：卡片背景 */
+            --brass: #b8893e;
+            /* 黃銅：主要強調色 */
+            --brass-dark: #8f6828;
+            --wine: #6b1f2a;
+            /* 酒紅：標題、危險 */
+            --moss: #4a6741;
+            /* 苔綠：成功 */
+            --ink: #3a2a20;
+            /* 墨色：文字 */
+            --line: #d9c9a8;
+            /* 邊線 */
+            --sidebar-w: 240px;
+        }
+
+        body {
+            background: var(--parchment);
+            color: var(--ink);
+            font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+        }
+
+        /* ===== 側邊欄 ===== */
+        .erp-sidebar {
+            background: var(--oak-dark);
+            border-right: 3px solid var(--brass);
+        }
+
+        @media (min-width: 992px) {
+            .erp-sidebar {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                width: var(--sidebar-w);
+                overflow-y: auto;
+            }
+
+            .erp-main {
+                margin-left: var(--sidebar-w);
+            }
+        }
+
+        .erp-brand {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            padding: 1.1rem 1.25rem;
+            color: var(--parchment);
+            font-family: "Noto Serif TC", "PMingLiU", Georgia, serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(184, 137, 62, .35);
+        }
+
+        .erp-brand i {
+            color: var(--brass);
+            font-size: 1.5rem;
+        }
+
+        .erp-brand:hover {
+            color: #fff;
+        }
+
+        .erp-menu .nav-link {
+            color: #d8c7a6;
+            padding: .75rem 1.25rem;
+            border-left: 4px solid transparent;
+            transition: background .2s, color .2s, padding-left .2s;
+        }
+
+        .erp-menu .nav-link i {
+            margin-right: .6rem;
+            color: var(--brass);
+        }
+
+        .erp-menu .nav-link:hover {
+            background: var(--oak);
+            color: #fff;
+            padding-left: 1.5rem;
+        }
+
+        .erp-menu .nav-link.active {
+            background: var(--oak);
+            color: #fff;
+            border-left-color: var(--brass);
+            font-weight: 700;
+        }
+
+        /* ===== 頂部列與頁面標題 ===== */
+        .erp-topbar {
+            background: var(--paper);
+            border-bottom: 1px solid var(--line);
+            padding: .85rem 1.5rem;
+        }
+
+        .erp-breadcrumb {
+            font-size: .9rem;
+            color: #7a6650;
+        }
+
+        .erp-title {
+            font-family: "Noto Serif TC", "PMingLiU", Georgia, serif;
+            color: var(--wine);
+            font-weight: 700;
+        }
+
+        /* ===== 卡片 ===== */
+        .erp-card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: .5rem;
+            box-shadow: 0 2px 8px rgba(42, 26, 18, .08);
+        }
+
+        .erp-card .card-header {
+            background: transparent;
+            border-bottom: 2px solid var(--brass);
+            padding: 1rem 1.5rem;
+        }
+
+        .erp-card .card-footer {
+            background: rgba(184, 137, 62, .08);
+            border-top: 1px solid var(--line);
+            padding: 1rem 1.5rem;
+        }
+
+        .erp-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title-text {
+            font-family: "Noto Serif TC", "PMingLiU", Georgia, serif;
+            font-weight: 700;
+            color: var(--wine);
+            margin: 0;
+        }
+
+        /* ===== 表單 ===== */
+        .form-label {
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .form-control,
+        .form-select,
+        .input-group-text {
+            background-color: #fffdf7;
+            border-color: var(--line);
+            color: var(--ink);
+        }
+
+        .input-group-text {
+            background: #efe3c6;
+            font-weight: 700;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--brass);
+            box-shadow: 0 0 0 .2rem rgba(184, 137, 62, .25);
+        }
+
+        .form-floating>label {
+            color: #7a6650;
+        }
+
+        .form-range::-webkit-slider-thumb {
+            background: var(--brass);
+        }
+
+        .form-range::-moz-range-thumb {
+            background: var(--brass);
+        }
+
+        .form-range:focus::-webkit-slider-thumb {
+            box-shadow: 0 0 0 .2rem rgba(184, 137, 62, .3);
+        }
+
+        .num-badge {
+            display: inline-block;
+            min-width: 3rem;
+            text-align: center;
+            padding: 0 .6rem;
+            background: var(--wine);
+            color: #fff;
+            border-radius: .35rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .is-valid {
+            border-color: var(--moss) !important;
+        }
+
+        .is-invalid {
+            border-color: var(--wine) !important;
+        }
+
+        .valid-feedback {
+            color: var(--moss);
+        }
+
+        .invalid-feedback {
+            color: var(--wine);
+        }
+
+        /* ===== 按鈕 ===== */
+        .btn {
+            transition: transform .15s, box-shadow .15s, background .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(42, 26, 18, .2);
+        }
+
+        .btn-brass {
+            background: var(--brass);
+            border-color: var(--brass-dark);
+            color: #fff;
+        }
+
+        .btn-brass:hover {
+            background: var(--brass-dark);
+            color: #fff;
+        }
+
+        .btn-wine {
+            background: var(--wine);
+            border-color: var(--wine);
+            color: #fff;
+        }
+
+        .btn-wine:hover {
+            background: #561924;
+            color: #fff;
+        }
+
+        .btn-moss {
+            background: var(--moss);
+            border-color: var(--moss);
+            color: #fff;
+        }
+
+        .btn-moss:hover {
+            background: #3b5434;
+            color: #fff;
+        }
+
+        .btn-outline-oak {
+            border-color: var(--oak);
+            color: var(--oak);
+            background: transparent;
+        }
+
+        .btn-outline-oak:hover {
+            background: var(--oak);
+            color: #fff;
+        }
+
+        /* ===== 資料確認區 ===== */
+        #showmsg {
+            animation: slideIn .35s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .confirm-head {
+            background: var(--wine);
+            color: var(--parchment);
+            padding: 1rem 1.5rem;
+            border-radius: .5rem .5rem 0 0;
+        }
+
+        .confirm-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .confirm-list li {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: .8rem 0;
+            border-bottom: 1px dashed var(--line);
+        }
+
+        .confirm-list li:last-child {
+            border-bottom: 0;
+        }
+
+        .confirm-list .k {
+            color: #7a6650;
+        }
+
+        .confirm-list .v {
+            font-weight: 700;
+            text-align: right;
+            word-break: break-all;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== 側邊欄 (手機版會變成上方可展開選單) ===== -->
+    <aside class="erp-sidebar">
+        <div class="d-flex align-items-center justify-content-between">
+            <a class="erp-brand flex-grow-1" href="#"><i class="bi bi-cup-hot-fill"></i>金麥酒館 ERP</a>
+            <button class="navbar-toggler d-lg-none me-3 border-secondary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#sideMenu" aria-controls="sideMenu" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="bi bi-list text-light fs-3"></i>
+            </button>
+        </div>
+        <div class="collapse d-lg-block" id="sideMenu">
+            <ul class="nav flex-column erp-menu py-2">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-house-door"></i>首頁</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="20261110 ch8 forms CRUD-C.html"><i
+                            class="bi bi-box-seam"></i>產品建檔</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="20261110 ch8 forms CRUD-R.html"><i class="bi bi-list-ul"></i>產品列表</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- ===== 主要內容區 ===== -->
+    <div class="erp-main">
+        <div class="erp-topbar">
+            <div class="erp-breadcrumb">產品管理 / 產品建檔</div>
+            <h1 class="erp-title h3 mb-0 mt-1">產品建檔</h1>
+        </div>
+
+        <div class="container-fluid p-3 p-lg-4">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-10">
+
+                    <!-- 建檔表單 -->
+                    <div class="card erp-card">
+                        <div class="card-header">
+                            <div class="card-title-text h5"><i class="bi bi-pencil-square me-2"></i>填寫產品資料</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3 form-floating">
+                                <input type="text" class="form-control form-control-lg" placeholder="" id="pname">
+                                <label for="pname" class="form-label">產品名稱(字數2-6字數)</label>
+                                <div class="valid-feedback">符合規定</div>
+                                <div class="invalid-feedback">不符合規定</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="price" class="form-label">價格(1-100)</label>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-text">NT$</span>
+                                    <input type="number" class="form-control" id="price" min="1" max="100" value="50">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="num" class="form-label">數量: <span class="num-badge" id="num-text">50</span>
+                                    個</label>
+                                <input type="range" class="form-range" min="1" max="100" step="1" value="50" id="num">
+                                <div class="d-flex justify-content-between small text-muted">
+                                    <span class="fw-bold">1</span>
+                                    <span class="fw-bold">100</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="category" class="form-label">產品分類</label>
+                                <select name="" id="category" class="form-select form-select-lg">
+                                    <option value="" class="text-center" disabled selected>---產品分類---</option>
+                                    <option value="零食">零食</option>
+                                    <option value="乳製品">乳製品</option>
+                                    <option value="飲料">飲料</option>
+                                </select>
+                                <div class="valid-feedback">已選擇分類</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="remark" class="form-label">備註</label>
+                                <textarea id="remark" class="form-control" rows="3"
+                                    placeholder="產品需注意的事項，字數2-10字數。"></textarea>
+                                <div class="valid-feedback">符合規定</div>
+                                <div class="invalid-feedback">不符合規定</div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <!-- 修改：原本的「取消」沒有功能，改成重新整理頁面來清空表單 -->
+                            <button class="btn btn-outline-oak" id="cancel-btn"><i
+                                    class="bi bi-arrow-counterclockwise me-1"></i>取消</button>
+                            <button class="btn btn-brass" id="ok-btn"><i
+                                    class="bi bi-check2-circle me-1"></i>確認</button>
+                        </div>
+                    </div>
+
+                    <!-- 產品建檔資料確認 (內容由 JS 產生) -->
+                    <div class="mt-4 d-none" id="showmsg"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-4.0.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        let flag_pname = false;
+        let flag_price = true;
+        let flag_category = false;
+        let flag_remark = false;
+        $(function () {
+            //產品名稱
+            $("#pname").on("change", function () {
+                if ($(this).val().length > 1 && $(this).val().length < 7) {
+                    $(this).removeClass("is-invalid");
+                    $(this).addClass("is-valid");
+                    flag_pname = true;
+                } else {
+                    $(this).removeClass("is-valid");
+                    $(this).addClass("is-invalid");
+                    flag_pname = false;
+                }
+            });
+
+            //價格
+            $("#price").on("change", function () {
+                if ($(this).val() > 0 && $(this).val() < 101) {
+                    $(this).removeClass("is-invalid");
+                    $(this).addClass("is-valid");
+                    flag_price = true;
+                } else {
+                    $(this).removeClass("is-valid");
+                    $(this).addClass("is-invalid");
+                    flag_price = false;
+                }
+            });
+
+            //數量 不用立flag
+            $("#num").on("change", function () {
+                console.log($(this).val());
+                $("#num-text").text($(this).val());
+            });
+
+            //產品分類
+            $("#category").on("change", function () {
+                console.log($(this).val());
+                $(this).addClass("is-valid");
+                flag_category = true;
+            });
+
+            //產品備註
+            $("#remark").on("change", function () {
+                if ($(this).val().length > 1 && $(this).val().length < 11) {
+                    $(this).removeClass("is-invalid");
+                    $(this).addClass("is-valid");
+                    flag_remark = true;
+                } else {
+                    $(this).removeClass("is-valid");
+                    $(this).addClass("is-invalid");
+                    flag_remark = false;
+                }
+            });
+
+            //【新增】表單的取消按鈕：重新載入頁面即可清空所有欄位
+            $("#cancel-btn").on("click", function () {
+                location.reload();
+            });
+
+            //按鈕監聽 #ok-btn
+            $("#ok-btn").on("click", function () {
+                if (flag_pname && flag_price && flag_category && flag_remark) {
+                    $("#showmsg").removeClass("d-none");
+
+                    //這個動作叫做「蒐集資料」 JS 就會將這些資料存進變數
+                    const pname = $("#pname").val();
+                    const price = $("#price").val();
+                    const num = $("#num").val();
+                    const category = $("#category").val();
+                    const remark = $("#remark").val();
+
+                    //【修改】只調整 HTML 結構與 class 以符合新版外觀，變數與流程不變
+                    let strHTML = `<div class="erp-card">
+                                <div class="confirm-head h5 mb-0"><i class="bi bi-clipboard-check me-2"></i>產品建檔資料確認</div>
+                                <div class="p-4">
+                                    <ul class="confirm-list mb-4">
+                                        <li><span class="k">產品名稱</span><span class="v">${pname}</span></li>
+                                        <li><span class="k">產品價格</span><span class="v">NT$ ${price}</span></li>
+                                        <li><span class="k">產品數量</span><span class="v">${num} 個</span></li>
+                                        <li><span class="k">產品分類</span><span class="v">${category}</span></li>
+                                        <li><span class="k">產品備註</span><span class="v">${remark}</span></li>
+                                    </ul>
+                                    <div class="d-flex gap-2 flex-column flex-sm-row justify-content-end">
+                                        <button class="btn btn-outline-oak" id="back-btn"><i class="bi bi-pencil me-1"></i>返回修改</button>
+                                        <button class="btn btn-moss" id="send-btn"><i class="bi bi-send-check me-1"></i>確認送出</button>
+                                    </div>
+                                </div>
+                            </div>`;
+                    $("#showmsg").html(strHTML);
+
+                    //【新增】捲動到確認區，避免使用者沒看到
+                    $("#showmsg")[0].scrollIntoView({ behavior: "smooth", block: "start" });
+                } else {
+                    Swal.fire({
+                        title: "欄位錯誤!",
+                        text: "欄位錯誤，請修正。",
+                        icon: "error",
+                        confirmButtonColor: "#6b1f2a"
+                    });
+                }
+            });
+
+            //【新增】返回修改：原本的「取消」按鈕沒有功能，改為收起確認區
+            $("#showmsg").on("click", "#back-btn", function () {
+                $("#showmsg").addClass("d-none");
+            });
+
+            //確認送出 #send-btn 先對已經存在的 showmsg 綁定 click 事件，當它底下的 send-btn 被點擊時，才執行這個 function。
+            $("#showmsg").on("click", "#send-btn", function () {
+                //蒐集欄位資料
+                const pname = $("#pname").val();
+                const price = $("#price").val();
+                const num = $("#num").val();
+                const category = $("#category").val();
+                const remark = $("#remark").val();
+
+                //轉成JSON物件
+                const dataJSON = {
+                    "name": pname,
+                    "category": category,
+                    "price": price,
+                    "num": num,
+                    "remark": remark
+                };
+
+                console.log(dataJSON);
+                console.log(JSON.stringify(dataJSON));
+
+                //傳送資料至後端API，執行新增動作 ,stringify() 的作用是：把 JavaScript 物件轉換成 JSON 字串
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:3000/product",
+                    dataType: "json",
+                    data: JSON.stringify(dataJSON), //要傳送的資料
+                    contentType: "application/json", //告訴後端，送過去的是 JSON 格式
+                    success: function (data) {
+                        console.log(data)
+
+                        //data:後端回傳的資料，這裡是一個json
+                        //新增成功後，考慮介面流暢度，sweetalert
+                        Swal.fire({
+                            title: "新增成功",
+                            text: "產品資料已建立~~",
+                            icon: "success",
+                            confirmButtonColor: "#4a6741"
+                        });
+
+                        //showmsg關閉
+                        $("#showmsg").addClass("d-none");
+
+                        //清除重設欄位與
+                        $("#pname").val("")
+                        $("#price").val(50)
+                        $("#num").val(50)
+                        $("#num-text").text(50) //【修改】原本是 .val(50)，但 span 要用 .text() 才會更新畫面
+                        $("#category").val("")
+                        $("#remark").val("")
+
+                        //重設驗證(打勾、驚嘆號取消)
+                        $("#pname,#price,#category,#remark").removeClass("is-valid is-invalid")
+
+                        //重設旗子
+                        flag_pname = false;
+                        flag_price = true;
+                        flag_category = false;
+                        flag_remark = false;
+
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "新增失敗",
+                            text: "無法連接後端API。",
+                            icon: "error",
+                            confirmButtonColor: "#6b1f2a"
+                        });
+                    }
+
+                });
+
+
+            });
+
+        });
+    </script>
+</body>
+
+</html>
