@@ -118,7 +118,7 @@
         const cleanshops = shops.map(function (item) {
             return {
                 name: (item.name ?? "未提供").trim(),                // ??將其自動轉為空字串 ""  trim()去除字串前後的空白字元
-                city: (item.city ?? "未提供").trim(),                //不一定較未提供，看公司要怎寫 也可""
+                city: (item.city ?? "未提供").trim(),                //不一定叫未提供，看公司要怎寫 也可""
                 tel: (item.tel ?? "未提供").trim(),
                 address: (item.address ?? "未提供").trim(),
                 owner: (item.owner ?? "未提供").trim(),
@@ -148,7 +148,7 @@
 
 
         //搜尋 filter
-        const result = shops.filter(function (item) {
+        const result = shops.filter(function (item) {            //filter():「過濾」陣列中的元素，依據你提供的條件進行篩選
             return item.city === "新北市"
         })
         console.log("原本資料搜尋結果:", result)    //上面新北市前後有空格
@@ -195,6 +195,42 @@
 
         //1.使用travelfood資料 練習分頁邏輯    
         //2.清洗 => 篩選 => 分頁
+
+        const cleanFood = normalizeFood(food)
+        //清洗
+        console.log("清洗後的資料:", cleanFood)
+        //篩選 台中市介紹內容包含[美食]的店家
+        const filterFood = cleanFood.filter(function (item) {
+            return item.city === "臺中市" && item.remark.includes("美食")
+        })
+        console.log("篩選後的資料:", filterFood)
+        console.log("符合條件的筆數", filterFood.length)
+
+        //分頁
+        const foodPageSize = 4
+        const foodPage = 3
+
+        const foodStart = (foodPage - 1) * foodPageSize
+        const foodEnd = foodStart + foodPageSize
+
+        const foodPageData = filterFood.slice(foodStart, foodEnd)
+        console.log("第" + foodPage + "頁的結果:", foodPageData)
+
+        
+        //將分頁整理成 副程式 很重要!!!
+        function pagination(data, pageSize, page) {
+            const start = (page - 1) * pageSize
+            const end = start + pageSize
+
+            return data.slice(start, end)
+        }
+
+        const foodPageSize01 = 4
+        const foodPage01 = 2
+        const foodPageData01 = pagination(filterFood, foodPageSize01, foodPage01)
+        console.log("第" + foodPage01 + "頁的結果:", foodPageData01)
+
+
     </script>
 
 </body>
