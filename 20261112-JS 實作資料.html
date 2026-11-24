@@ -62,8 +62,9 @@
 
         //資料清洗副程式
         function normalize(data) {
-            return data.map(function (item) {
+            return data.map(function (item,index) {
                 return {
+                    id:index+1,
                     name: (item.HotelName ?? "未提供").trim(),
                     city: (item.PostalAddress.City ?? "未提供").trim(),
                     tel: (item.Telephones ?? "未提供"),
