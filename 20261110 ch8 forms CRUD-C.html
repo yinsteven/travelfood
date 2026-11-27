@@ -451,6 +451,7 @@
     <script src="js/jquery-4.0.0.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        const API_URL = "http://127.0.0.1:8080/product";
         let flag_pname = false;
         let flag_price = true;
         let flag_category = false;
@@ -564,9 +565,10 @@
             //確認送出 #send-btn 先對已經存在的 showmsg 綁定 click 事件，當它底下的 send-btn 被點擊時，才執行這個 function。
             $("#showmsg").on("click", "#send-btn", function () {
                 //蒐集欄位資料
+                //蒐集欄位資料
                 const pname = $("#pname").val();
-                const price = $("#price").val();
-                const num = $("#num").val();
+                const price = Number($("#price").val());
+                const num = Number($("#num").val());
                 const category = $("#category").val();
                 const remark = $("#remark").val();
 
@@ -587,7 +589,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:3000/product",
+                    url: API_URL,
                     dataType: "json",
                     data: JSON.stringify(dataJSON), //要傳送的資料
                     contentType: "application/json", //告訴後端，送過去的是 JSON 格式
